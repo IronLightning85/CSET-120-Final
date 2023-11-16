@@ -60,3 +60,88 @@
     box-shadow: 0px 0px 75px orange;
 }
 
+/* LOG IN PAGE --------------------------------------------------------------------------------------------------------- */
+.logInMain
+{
+    background-image: url(images/Ultra_Luxe_Gourmand.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+.logInDiv
+{
+    text-align: center;
+    width: 1140px;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    font-size: 240%;
+    text-transform: uppercase;
+}
+
+.logInDiv h1
+{
+    background-color: rgb(83, 54, 19);
+    color: white;
+    max-width: 50%;
+    border-radius: 10px;
+    border-color: black;
+    background-image: url(images/wood2.jpg);
+    background-size: cover;
+    border-style: solid;
+    margin-left: 24%;
+}
+
+.logInDiv p
+{
+    color: white;
+}
+
+.bottomDiv
+{
+    text-align: center;
+    width: 1140px;
+    position: absolute;
+    bottom: 10%;
+    left: 20%;
+    font-size: 240%;
+    text-transform: uppercase;
+    background-color: rgb(83, 54, 19);
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    border-color: black;
+    background-image: url(images/wood2.jpg);
+    background-size: cover;
+    border-style: solid;
+}
+
+.logInMain button
+{
+    padding: 15px 30px;
+    margin-top: 0px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 10px;
+    color: black;
+    font-size: medium;
+    background-color: transparent;
+    border: 3px solid black;
+    vertical-align: top;
+    background-color: peachpuff;
+    transition: background-color 0.2s, block-shadow 0.2s;
+}
+
+.logInMain button:hover, button:active
+{
+    background-color: blanchedalmond;
+    box-shadow: 0px 0px 5px burlywood;
+}
+
+.logInDiv input
+{
+    vertical-align: middle;
+    font-size: medium;
+}

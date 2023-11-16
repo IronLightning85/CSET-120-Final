@@ -2,8 +2,19 @@ function signUp()
 {
     let email = document.getElementById("emailSignUpInput").value;
     let password = document.getElementById("passwordSignUpInput").value;
-    
-    localStorage.setItem(email, password);
+
+    console.log(localStorage.getItem(email))
+
+    if(!localStorage.getItem(email) && email != "")
+    {
+        localStorage.setItem(email, password);
+        alert("Account sucessfully created.")
+    }
+
+    else
+    {
+        alert("Email already used/Invalid Email.")
+    }
 }
 
 function logIn()

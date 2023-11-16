@@ -1,3 +1,5 @@
+localStorage.setItem("Manager", "Password")
+
 function signUp()
 {
     let email = document.getElementById("emailSignUpInput").value;

@@ -5,7 +5,7 @@ function signUp()
 
     console.log(localStorage.getItem(email))
 
-    if(!localStorage.getItem(email))
+    if(!localStorage.getItem(email) && email != "")
     {
         localStorage.setItem(email, password);
         alert("Account sucessfully created.")
@@ -13,7 +13,7 @@ function signUp()
 
     else
     {
-        alert("Email already used.")
+        alert("Email already used/Invalid Email.")
     }
 }
 

@@ -144,6 +144,18 @@
     color: white;
 }
 
+.logInDiv input
+{
+    background-image: url(images/wood.jpg);
+    border-color: black;
+    color: white;
+}
+
+.logInDiv input:hover, input:active
+{
+    border-color: white;
+}
+
 .bottomDiv
 {
     text-align: center;
@@ -226,6 +238,20 @@
 .signUpDiv p
 {
     color: white;
+}
+
+.signUpDiv input
+{
+    background-image: url();
+    background-color: goldenrod;
+    border-color: black;
+    color: white;
+}
+
+.signUpDiv input:hover, input:active
+{
+    border-color: white;
+    box-shadow: 0px 0px 10px gold;
 }
 
 .bottomSignUpDiv

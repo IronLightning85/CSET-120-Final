@@ -99,11 +99,57 @@
     margin-top: 1.5em;
 }
 
+
+/* meal photos */
+.section_meals
+{
+    padding: 0;
+}
+
+.meals_showcase
+{
+    list-style: none;
+    width: 100%;
+}
+
+.meals_showcase li
+{
+    display: block;
+    float: left;
+    width: 25%;
+}
+.meal_photo
+{
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #000;
+}
+
+.meal_photo img
+{
+    opacity: 0.7;
+    width: 100%;
+    height: auto;
+    transform: scale(1.15);
+    transition: transform 0.5s; opacity: 0.5s;
+}
+
+.meal_photo img:hover
+{
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+
 /* footer */
 .footer
 {
     height: 25vh;
 }
+
+
 
 /* LOG IN PAGE --------------------------------------------------------------------------------------------------------- */
 .logInMain

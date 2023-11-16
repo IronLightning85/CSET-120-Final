@@ -1,4 +1,5 @@
 @font-face { font-family: Triforce; src: url('fonts/Triforce.ttf'); }
+@font-face { font-family: Hylian; src: url('fonts/AncientHylian.otf'); }
 
 *
 {
@@ -118,7 +119,7 @@
 {
     display: block;
     float: left;
-    width: 25%;
+    width: 25%
 }
 .meal_photo
 {

@@ -190,6 +190,18 @@
     color: white;
 }
 
+.logInDiv input
+{
+    background-image: url(images/wood.jpg);
+    border-color: black;
+    color: white;
+}
+
+.logInDiv input:hover, input:active
+{
+    border-color: white;
+}
+
 .bottomDiv
 {
     text-align: center;
@@ -231,6 +243,104 @@
 }
 
 .logInDiv input
+{
+    vertical-align: middle;
+    font-size: medium;
+}
+
+/* SIGN UP PAGE --------------------------------------------------------------------------------------------------------- */
+
+.signUpMain
+{
+    background-image: url(images/marioWallpaper.jpg);
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+.signUpDiv
+{
+    text-align: center;
+    width: 1140px;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    font-size: 240%;
+    text-transform: uppercase;
+}
+
+.signUpDiv h1
+{
+    background-color: rgba(83, 54, 19, 0.46);
+    color: goldenrod;
+    max-width: 50%;
+    border-radius: 10px;
+    border-color: black;
+    background-image: url();
+    background-size: cover;
+    border-style: solid;
+    margin-left: 24%;
+}
+
+.signUpDiv p
+{
+    color: white;
+}
+
+.signUpDiv input
+{
+    background-image: url();
+    background-color: goldenrod;
+    border-color: black;
+    color: white;
+}
+
+.signUpDiv input:hover, input:active
+{
+    border-color: white;
+    box-shadow: 0px 0px 10px gold;
+}
+
+.bottomSignUpDiv
+{
+    text-align: center;
+    width: 1140px;
+    position: absolute;
+    bottom: 10%;
+    left: 20%;
+    font-size: 240%;
+    text-transform: uppercase;
+    background-color: rgba(83, 54, 19, 0.46);
+    padding: 10px;
+    color: goldenrod;
+    border-radius: 10px;
+    border-color: black;
+    background-image: url();
+    background-size: cover;
+    border-style: solid;
+}
+
+.signUpMain button
+{
+    padding: 15px 30px;
+    margin-top: 0px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 10px;
+    color: black;
+    font-size: medium;
+    border: 3px solid black;
+    vertical-align: top;
+    background-color: rgba(192, 135, 49, 0.6);
+    transition: background-color 0.2s, block-shadow 0.2s;
+}
+
+.signUpMain button:hover, button:active
+{
+    background-color: rgba(217, 165, 32, 0.9);
+    box-shadow: 0px 0px 5px burlywood;
+}
+
+.signUpDiv input
 {
     vertical-align: middle;
     font-size: medium;

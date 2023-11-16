@@ -248,6 +248,45 @@
     font-size: medium;
 }
 
+.homeButtonDivLogIn
+{
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    font-size: 240%;
+    text-transform: uppercase;
+    background-color: rgba(83, 54, 19, 0.46);
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    color: goldenrod;
+    background-image: url(images/wood2.jpg);
+}
+
+.homeButtonDivLogIn button
+{
+    padding: 15px 30px;
+    margin: 0px;
+    font-size: 100%;
+    text-decoration: none;
+    width: 100%;
+    border-radius: 20px;
+    color: black;
+    border: 3px solid black;
+    vertical-align: top;
+    background-color: peachpuff;
+    transition: background-color 0.2s, block-shadow 0.2s;
+}
+
+.homeButtonDivLogIn button:hover, button:active
+{
+    background-color: blanchedalmond;
+    box-shadow: 0px 0px 5px burlywood;
+}
+
 /* SIGN UP PAGE --------------------------------------------------------------------------------------------------------- */
 
 .signUpMain
@@ -266,6 +305,44 @@
     left: 20%;
     font-size: 240%;
     text-transform: uppercase;
+}
+
+.homeButtonDivSignUp
+{
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    font-size: 240%;
+    text-transform: uppercase;
+    background-color: rgba(83, 54, 19, 0.46);
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    color: goldenrod;
+}
+
+.homeButtonDivSignUp button
+{
+    padding: 15px 30px;
+    margin: 0px;
+    font-size: 100%;
+    text-decoration: none;
+    width: 100%;
+    border-radius: 20px;
+    color: black;
+    border: 3px solid black;
+    vertical-align: top;
+    background-color: rgba(192, 135, 49, 0.6);
+    transition: background-color 0.2s, block-shadow 0.2s;
+}
+
+.homeButtonDivSignUp button:hover, button:active
+{
+    background-color: rgba(217, 165, 32, 0.9);
+    box-shadow: 0px 0px 5px burlywood;
 }
 
 .signUpDiv h1
@@ -288,7 +365,6 @@
 
 .signUpDiv input
 {
-    background-image: url();
     background-color: goldenrod;
     border-color: black;
     color: white;
@@ -319,7 +395,7 @@
     border-style: solid;
 }
 
-.signUpMain button
+.signUpDiv button
 {
     padding: 15px 30px;
     margin-top: 0px;
@@ -334,7 +410,7 @@
     transition: background-color 0.2s, block-shadow 0.2s;
 }
 
-.signUpMain button:hover, button:active
+.signUpDiv button:hover, button:active
 {
     background-color: rgba(217, 165, 32, 0.9);
     box-shadow: 0px 0px 5px burlywood;
@@ -344,4 +420,25 @@
 {
     vertical-align: middle;
     font-size: medium;
+}
+
+.bottomSignUpDiv button
+{
+    padding: 15px 30px;
+    margin-top: 0px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 10px;
+    color: black;
+    font-size: medium;
+    border: 3px solid black;
+    vertical-align: top;
+    background-color: rgba(192, 135, 49, 0.6);
+    transition: background-color 0.2s, block-shadow 0.2s;
+}
+
+.bottomSignUpDiv button:hover, button:active
+{
+    background-color: rgba(217, 165, 32, 0.9);
+    box-shadow: 0px 0px 5px burlywood;
 }

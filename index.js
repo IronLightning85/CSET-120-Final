@@ -1,13 +1,11 @@
-localStorage.setItem("Manager", "Password")
+localStorage.setItem("Manager", "Password");
 
 function signUp()
 {
     let email = document.getElementById("emailSignUpInput").value;
     let password = document.getElementById("passwordSignUpInput").value;
 
-    console.log(localStorage.getItem(email));
-
-    if(!localStorage.getItem(email) && email != "")
+    if(!localStorage.getItem(email) && email != "" && checkEmail(email))
     {
         localStorage.setItem(email, password);
         alert("Account sucessfully created.");
@@ -15,8 +13,33 @@ function signUp()
 
     else
     {
-        alert("Email already used/Invalid Email.");
+        alert("Email already used orInvalid Email.");
     }
+}
+
+function checkEmail(email)//checks email to see if it has an @ and a .
+{
+    isAnd = false;
+    isDot = false;
+
+    for(let i = 0; i < email.length; i++)
+    {
+        if(email[i] == "@")
+        {
+            isAnd = true;
+        }
+        if(email[i] == ".")
+        {
+            isDot = true;
+        }
+    }
+
+    if(isAnd && isDot && email.length > 5)
+    {
+        return true;
+    }
+    
+    return false;
 }
 
 function logIn()
@@ -28,6 +51,14 @@ function logIn()
     {
         if(password === localStorage.getItem(email))
         {
+            if(email == "Manager" && password == "password")
+            {
+                localStorage.setItem("isManager", "true");
+            }
+            else
+            {
+                localStorage.setItem("isManager", "false");
+            }
             window.location.href = "menu.html";
         }
         else

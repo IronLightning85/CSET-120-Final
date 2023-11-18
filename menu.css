@@ -1,0 +1,61 @@
+*
+{
+    padding: 0px;
+    margin: 0px;
+    scroll-behavior: smooth;
+}
+
+html, body
+{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.menuMain
+{
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120vh;
+    background-image: url(images/stardew\ 3.jpg);
+}
+
+.menuLogOut
+{
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    position: absolute;
+    top: 7%;
+    left: 75%;
+    font-size: 240%;
+    text-transform: uppercase;
+    background-image: url("images/stardew\ wood\ texture\ final.jpg");
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+}
+
+.menuLogOut button
+{
+    padding: 15px 30px;
+    margin: 0px;
+    font-size: 100%;
+    text-decoration: none;
+    width: 100%;
+    border-radius: 20px;
+    font-size: larger;
+    color: black;
+    border: 3px solid black;
+    vertical-align: top;
+    background: hsla(60, 42%, 81%, 1);
+    background: linear-gradient(90deg, hsla(60, 42%, 81%, 1) 0%, hsla(195, 85%, 66%, 1) 18%, hsla(243, 59%, 28%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(60, 42%, 81%, 1) 0%, hsla(195, 85%, 66%, 1) 18%, hsla(243, 59%, 28%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(60, 42%, 81%, 1) 0%, hsla(195, 85%, 66%, 1) 18%, hsla(243, 59%, 28%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E3E3BB", endColorstr="#61CEF2", GradientType=1 );
+}
+
+.menuLogOut button:hover button:active
+{
+    background-color: rgba(217, 165, 32, 0.9);
+    box-shadow: 0px 0px 5px green;
+}

@@ -10,9 +10,10 @@ let menu = '{ "Menu" : [' +
 
 function addItem(itemName, price, imgLink)
 {
+    console.log("TRIGGERED")
     var menuRow = document.createElement("div")
     menuRow.classList.add("menu-row")
-    var newItem = document.getElementsByClassName("new-items")[0]
+    var newItem = document.getElementsByClassName("shop-items")[0]
     var menuRowContents = `
         <div class="shop-item">
             <span class="shop-item-title">${itemName}</span>
@@ -22,6 +23,6 @@ function addItem(itemName, price, imgLink)
                 <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
         </div>
     `
-    menuRow.innterHTML = menuRowContents
+    menuRow.innerHTML = menuRowContents
     newItem.append(menuRow)
 }

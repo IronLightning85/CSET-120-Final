@@ -8,3 +8,20 @@ let menu = '{ "Menu" : [' +
     '{"name":"Firecap Soup", "price":"TBD", "url":"images/food/01_FirecapSoup.jpg"}, ' +
     '{"name":"Mango Rice", "price":"TBD", "url":"images/food/mangoRice_01.jpg"}, ]}';
 
+function addItem(itemName, price, imgLink)
+{
+    var menuRow = document.createElement("div")
+    menuRow.classList.add("menu-row")
+    var newItem = document.getElementsByClassName("new-items")[0]
+    var menuRowContents = `
+        <div class="shop-item">
+            <span class="shop-item-title">${itemName}</span>
+            <img class="shop-item-image" src="${imgLink}">
+            <div class="shop-item-details">
+                <span class="shop-item-price">${price}</span>
+                <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+        </div>
+    `
+    menuRow.innterHTML = menuRowContents
+    newItem.append(menuRow)
+}

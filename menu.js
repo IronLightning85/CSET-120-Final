@@ -1,13 +1,3 @@
-let menu = '{ "Menu" : [' +
-    '{"name":"Veggie Cream Soup", "price":"TBD", "url":"images/food/Creamy Soup.JPG"},' +
-    '{"name":"Nut Cake", "price":"TBD", "url":"images/food/Nut Cake.jpeg"}, ' +
-    '{"name":"Monster Rice Balls", "price":"TBD", "url":"images/food/BotW Monster Rice Ball.jpeg"}, ' +
-    '{"name":"Mud Cookie", "price":"TBD", "url":"images/food/mudcookie_08_copy.jpg"}, ' +
-    '{"name":"Cheesy Tomato", "price":"TBD", "url":"images/food/cheesyTomato_01.png"}, ' +
-    '{"name":"Monster Lasagna", "price":"TBD", "url":"images/food/monsterLasagna_01.jpg"}, ' +
-    '{"name":"Firecap Soup", "price":"TBD", "url":"images/food/01_FirecapSoup.jpg"}, ' +
-    '{"name":"Mango Rice", "price":"TBD", "url":"images/food/mangoRice_01.jpg"}, ]}';
-
 function addItem(itemName, price, imgLink)
 {
     console.log("TRIGGERED")
@@ -25,4 +15,44 @@ function addItem(itemName, price, imgLink)
     `
     menuRow.innerHTML = menuRowContents
     newItem.append(menuRow)
+    console.log("BUTTON EDITED:", menuRow.getElementsByClassName("btn-primary")[0])
+    menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)})
+}
+
+function addToCart(itemName, price, imgLink)
+{
+    console.log("addToCart Activated", itemName, price, imgLink)
+    var cartRow = document.createElement("div")
+    cartRow.classList.add("cart-row")
+    var cartItem = document.getElementsByClassName("cart-items")[0]
+    var cartRowContents = `
+        <div class="cart-item cart-column">
+            <img class="cart-item-image" src="${imgLink}">
+            <span class="cart-item-title">${itemName}</span>
+        </div>
+        <span class="cart-price cart-column">${price}</span>
+        <div class="cart-quantity cart-column">
+            <input class="cart-quantity-input" type="number" value="1">
+            <button class="btn btn-danger" type="button">REMOVE</button>
+        </div>
+    `
+    cartRow.innerHTML = cartRowContents
+    cartItem.append(cartRow)
+    console.log("BUTTON EDITED:", cartRow.getElementsByClassName("btn-danger")[0])
+    cartRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeItem(itemName, price, imgLink)})
+}
+
+function purchaseClicked()
+{
+    alert("Your order has been placed")
+    var cartItems = document.getElementsByClassName("cart-items")[0]
+    while (cartItems.hasChildNodes())
+    {
+        cartItems.removeChild(cartItems.firstChild)
+    }
+}
+
+function removeItem(itemName, price, imgLink)
+{
+    console.log("removeItem Activated:", itemName, price, imgLink)
 }

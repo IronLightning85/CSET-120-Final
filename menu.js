@@ -34,7 +34,7 @@ function addItem(itemName, price, imgLink)
     `
     menuRow.innerHTML = menuRowContents
     newItem.append(menuRow)
-    console.log("BUTTON EDITED:", menuRow.getElementsByClassName("btn-primary")[0])
+    //console.log("BUTTON EDITED:", menuRow.getElementsByClassName("btn-primary")[0])
     menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)})
 }
 
@@ -57,8 +57,11 @@ function addToCart(itemName, price, imgLink)
     `
     cartRow.innerHTML = cartRowContents
     cartItem.append(cartRow)
-    console.log("BUTTON EDITED:", cartRow.getElementsByClassName("btn-danger")[0])
+    //console.log("BUTTON EDITED:", cartRow.getElementsByClassName("btn-danger")[0])
+    cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener('change', updatePrice)
     cartRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeItem(itemName, price, imgLink)})
+
+    updatePrice()
 }
 
 function purchaseClicked()
@@ -69,9 +72,62 @@ function purchaseClicked()
     {
         cartItems.removeChild(cartItems.firstChild)
     }
+
+    updatePrice()
 }
 
 function removeItem(itemName, price, imgLink)
 {
     console.log("removeItem Activated:", itemName, price, imgLink)
+    for(let i = 1; i < document.getElementsByClassName("cart-row").length; i++)
+    {
+        // console.log("CURRENT ELELMENT:", document.getElementsByClassName("cart-row")[i].innerHTML)
+        let x = document.getElementsByClassName("cart-row")[i]
+        // console.log("X ELEMENT:", x.getElementsByClassName("cart-item-title")[0].innerHTML)
+        
+        if(x.getElementsByClassName("cart-item-title")[0].innerHTML === itemName)
+        {
+            let cartItems = document.getElementsByClassName("cart-items")[0]
+            // console.log("THING TO REMOVE:", document.getElementsByClassName("cart-row")[i])
+            // console.log("CART ITEMS:", cartItems.getElementsByClassName("cart-row"))
+            cartItems.removeChild(cartItems.getElementsByClassName("cart-row")[i - 1])
+        }
+    }
+
+    updatePrice()
+}
+
+function updatePrice()
+{
+    let finalPrice = 0
+    console.log("ITEMS:", document.getElementsByClassName("cart-items")[0])
+    let cartItems = document.getElementsByClassName("cart-items")[0]
+    console.log(cartItems.getElementsByClassName("cart-row"))
+
+    for (let i = 0; i < cartItems.getElementsByClassName("cart-row").length; i++)
+    {
+
+        let currentObject = cartItems.getElementsByClassName("cart-row")[i] // GETS PRICE OF THING
+        console.log("Current object:", currentObject)
+
+        let price = currentObject.getElementsByTagName("span")[1].innerHTML // GETS PRICE
+        console.log("Current price:", price)
+
+        let quantity = currentObject.getElementsByTagName("input")[0].value // GETS QUANTITY
+        console.log("Current quantity:", quantity)
+
+        finalPrice += parseFloat(price.replace("$", "") * quantity) // REMOVE THE $ SIGN AND MULTIPLY BY QUANTITY
+
+        // if (!String(finalPrice).includes("."))
+        // {
+        //     finalPrice = "$" + finalPrice + ".00"
+        // }
+
+        // else
+        // {
+        //     finalPrice = "$" + finalPrice
+        // }
+
+        console.log("FINAL:", finalPrice)
+    }
 }

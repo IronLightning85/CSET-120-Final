@@ -71,6 +71,7 @@ html, body
 
 .shop-item {
     margin: 30px;
+    max-width: 375px;
 }
 
 .shop-item-title {
@@ -258,4 +259,14 @@ html, body
 .content-cart
 {
     margin-top: 25px;
+}
+
+.shop-item-info
+{
+    text-align: center;
+}
+
+.menu-row
+{
+    text-align: center;
 }

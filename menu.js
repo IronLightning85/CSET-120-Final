@@ -12,7 +12,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 if(!localStorage.getItem("count"))
 {
     localStorage.setItem("count", 1)
-    localStorage.setItem("menu", "Veggie Cream Soup,$3.00,images/food/Creamy Soup.JPG*Nut Cake,$4.00,images/food/Nut Cake.jpeg*Monster Rice Balls,$3.50,images/food/BotW Monster Rice Ball.jpeg*Mud Cookies,$2.00,images/food/mudcookie_08_copy.jpg*Cheesy Tomatoes,$2.00,images/food/cheesyTomato_01.png*Monster Lasagna,$6.00,images/food/monsterLasagna_01.jpg*Firecap Soup,$3.50,images/food/01_FirecapSoup.jpg*Mango Rice,$2.75,images/food/mangoRice_01.jpg");
+    localStorage.setItem("menu", "Veggie Cream Soup|$3.00|images/food/Creamy Soup.JPG|This creamy soup showcases the sweetness of vegetables in a veritable taste explosion.*Nut Cake|$4.00|images/food/Nut Cake.jpeg|Forest nuts give this cake a pleasant texture and a simple, understated sweetness.*Monster Rice Balls|$3.50|images/food/BotW Monster Rice Ball.jpeg|Rice balls flavored with monster extract. Their unique aroma is not for everyone.*Mud Cookies|$2.00|images/food/mudcookie_08_copy.jpg|A baked good invented by Delbert Winters using post-War ingredients. Despite it's inappetizing appearance, consumining is known to give one a burst of energy.*Cheesy Tomatoes|$2.00|images/food/cheesyTomato_01.png|A simple dish of Hylian tomato topped with delicious Hateno cheese. A perfect snack.*Monster Lasagna|$6.00|images/food/monsterLasagna_01.jpg|A deviously flavored dish with a hint of monster meat. It's harsh ingredients arn't for the faint of stomach.*Firecap Soup|$3.50|images/food/01_FirecapSoup.jpg|Boiled and stirred to perfection, firecap soup will make the coldest days seem warm with it's iconic flaming hot sensation.*Mango Rice|$2.75|images/food/mangoRice_01.jpg|Bland and sweet. A perfect mix to make your taste buds go wild. With a mango topping there is greatness in every bite.");
 }
 
 // displays manager button
@@ -35,12 +35,13 @@ function showMenu()
     menuArr = menu.split('*');
     for(let i = 0; i < menuArr.length; i++)
     {
-        item = menuArr[i].split(",");
-        addItem(item[0], item[1], item[2]);
+        item = menuArr[i].split("|");
+        console.log(item)
+        addItem(item[0], item[1], item[2], item[3]);
     }
 }
 
-function addItem(itemName, price, imgLink)
+function addItem(itemName, price, imgLink, itemInfo)
 {
     var menuRow = document.createElement("div")
     menuRow.classList.add("menu-row")
@@ -52,6 +53,10 @@ function addItem(itemName, price, imgLink)
             <div class="shop-item-details">
                 <span class="shop-item-price">${price}</span>
                 <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+            </div>
+            <div class="shop-item-details">
+                <p class="shop-item-info">${itemInfo}</p>
+            </div>
         </div>
     `
     menuRow.innerHTML = menuRowContents

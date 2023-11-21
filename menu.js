@@ -40,26 +40,45 @@ function addItem(itemName, price, imgLink)
 
 function addToCart(itemName, price, imgLink)
 {
-    console.log("addToCart Activated", itemName, price, imgLink)
-    var cartRow = document.createElement("div")
-    cartRow.classList.add("cart-row")
-    var cartItem = document.getElementsByClassName("cart-items")[0]
-    var cartRowContents = `
-        <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imgLink}">
-            <span class="cart-item-title">${itemName}</span>
-        </div>
-        <span class="cart-price cart-column">${price}</span>
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger" type="button">REMOVE</button>
-        </div>
-    `
-    cartRow.innerHTML = cartRowContents
-    cartItem.append(cartRow)
-    //console.log("BUTTON EDITED:", cartRow.getElementsByClassName("btn-danger")[0])
-    cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener('change', updatePrice)
-    cartRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeItem(itemName, price, imgLink)})
+    let cartItems = document.getElementsByClassName("cart-items")[0];
+    let inCartFlag = false;
+
+    for (let i = 0; i < cartItems.getElementsByClassName("cart-row").length; i++) // Goes through each element and totals their cost
+    {
+        
+        let currentObject = cartItems.getElementsByClassName("cart-row")[i]
+        console.log("Current object:", currentObject)
+
+        if (itemName == currentObject.getElementsByClassName("cart-item-title")[0].innerHTML)
+        {
+            alert("Item already in cart")
+            inCartFlag = true;
+        }
+    }
+
+    if (!inCartFlag)
+    {
+        console.log("addToCart Activated", itemName, price, imgLink)
+        var cartRow = document.createElement("div")
+        cartRow.classList.add("cart-row")
+        var cartItem = document.getElementsByClassName("cart-items")[0]
+        var cartRowContents = `
+            <div class="cart-item cart-column">
+                <img class="cart-item-image" src="${imgLink}">
+                <span class="cart-item-title">${itemName}</span>
+            </div>
+            <span class="cart-price cart-column">${price}</span>
+            <div class="cart-quantity cart-column">
+                <input class="cart-quantity-input" type="number" value="1" min=0>
+                <button class="btn btn-danger" type="button">REMOVE</button>
+            </div>
+        `
+        cartRow.innerHTML = cartRowContents
+        cartItem.append(cartRow)
+        //console.log("BUTTON EDITED:", cartRow.getElementsByClassName("btn-danger")[0])
+        cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener('change', updatePrice)
+        cartRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeItem(itemName)})
+    }
 
     updatePrice()
 }
@@ -76,9 +95,9 @@ function purchaseClicked()
     updatePrice()
 }
 
-function removeItem(itemName, price, imgLink)
+function removeItem(itemName)
 {
-    console.log("removeItem Activated:", itemName, price, imgLink)
+    //console.log("removeItem Activated:", itemName, price, imgLink)
     for(let i = 1; i < document.getElementsByClassName("cart-row").length; i++)
     {
         // console.log("CURRENT ELELMENT:", document.getElementsByClassName("cart-row")[i].innerHTML)
@@ -100,11 +119,16 @@ function removeItem(itemName, price, imgLink)
 function updatePrice()
 {
     let finalPrice = 0
-    console.log("ITEMS:", document.getElementsByClassName("cart-items")[0])
+    //console.log("ITEMS:", document.getElementsByClassName("cart-items")[0])
     let cartItems = document.getElementsByClassName("cart-items")[0]
-    console.log(cartItems.getElementsByClassName("cart-row"))
+    //console.log(cartItems.getElementsByClassName("cart-row"))
 
-    for (let i = 0; i < cartItems.getElementsByClassName("cart-row").length; i++)
+    if (cartItems.getElementsByClassName("cart-row").length == 0) // If no elements set price to 0
+    {
+        document.body.getElementsByClassName("cart-total-price")[0].innerHTML = "$0.00"
+    }
+
+    for (let i = 0; i < cartItems.getElementsByClassName("cart-row").length; i++) // Goes through each element and totals their cost
     {
 
         let currentObject = cartItems.getElementsByClassName("cart-row")[i] // GETS PRICE OF THING
@@ -116,18 +140,14 @@ function updatePrice()
         let quantity = currentObject.getElementsByTagName("input")[0].value // GETS QUANTITY
         console.log("Current quantity:", quantity)
 
+        if (quantity == 0)
+        {
+            removeItem(currentObject.getElementsByClassName("cart-item-title")[0].innerHTML)
+        }
+
         finalPrice += parseFloat(price.replace("$", "") * quantity) // REMOVE THE $ SIGN AND MULTIPLY BY QUANTITY
-
-        // if (!String(finalPrice).includes("."))
-        // {
-        //     finalPrice = "$" + finalPrice + ".00"
-        // }
-
-        // else
-        // {
-        //     finalPrice = "$" + finalPrice
-        // }
-
         console.log("FINAL:", finalPrice)
+
+        document.body.getElementsByClassName("cart-total-price")[0].innerHTML = "$" + finalPrice
     }
 }

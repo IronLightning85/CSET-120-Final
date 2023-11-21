@@ -1,3 +1,13 @@
+// Create our number formatter.
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
+
 //sets menu at start
 if(!localStorage.getItem("count"))
 {
@@ -144,13 +154,13 @@ function updatePrice()
     {
 
         let currentObject = cartItems.getElementsByClassName("cart-row")[i] // GETS PRICE OF THING
-        console.log("Current object:", currentObject)
+        //console.log("Current object:", currentObject)
 
         let price = currentObject.getElementsByTagName("span")[1].innerHTML // GETS PRICE
-        console.log("Current price:", price)
+        //console.log("Current price:", price)
 
         let quantity = currentObject.getElementsByTagName("input")[0].value // GETS QUANTITY
-        console.log("Current quantity:", quantity)
+        //console.log("Current quantity:", quantity)
 
         if (quantity == 0)
         {
@@ -160,7 +170,7 @@ function updatePrice()
         finalPrice += parseFloat(price.replace("$", "") * quantity) // REMOVE THE $ SIGN AND MULTIPLY BY QUANTITY
         console.log("FINAL:", finalPrice)
 
-        document.body.getElementsByClassName("cart-total-price")[0].innerHTML = "$" + finalPrice
+        document.body.getElementsByClassName("cart-total-price")[0].innerHTML = formatter.format(finalPrice)
     }
 }
 

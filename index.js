@@ -51,15 +51,17 @@ function logIn()
     {
         if(password === localStorage.getItem(email))
         {
-            if(email == "Manager" && password == "password")
+            if(email == "Manager")
             {
                 localStorage.setItem("isManager", "true");
+                window.location.href = "menu.html";
             }
             else
             {
                 localStorage.setItem("isManager", "false");
+                window.location.href = "menu.html";
             }
-            window.location.href = "menu.html";
+            
         }
         else
         {

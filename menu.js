@@ -4,8 +4,20 @@ if(!localStorage.getItem("count"))
     localStorage.setItem("count", 1)
     localStorage.setItem("menu", "Veggie Cream Soup,$3.00,images/food/Creamy Soup.JPG*Nut Cake,$4.00,images/food/Nut Cake.jpeg*Monster Rice Balls,$3.50,images/food/BotW Monster Rice Ball.jpeg*Mud Cookies,$2.00,images/food/mudcookie_08_copy.jpg*Cheesy Tomatoes,$2.00,images/food/cheesyTomato_01.png*Monster Lasagna,$6.00,images/food/monsterLasagna_01.jpg*Firecap Soup,$3.50,images/food/01_FirecapSoup.jpg*Mango Rice,$2.75,images/food/mangoRice_01.jpg");
 }
-showMenu();
 
+// displays manager button
+if(localStorage.getItem("isManager") == "true")
+{
+        let newButtonDiv = document.createElement("div");
+        let location = document.getElementsByClassName("topnav")[0];
+        let buttonContents = '<a href="editMenu.html"><button>Edit Menu</button></a>';
+        newButtonDiv.innerHTML = buttonContents;
+        location.append(newButtonDiv);
+}
+
+
+
+showMenu();
 
 function showMenu()
 {
@@ -151,3 +163,4 @@ function updatePrice()
         document.body.getElementsByClassName("cart-total-price")[0].innerHTML = "$" + finalPrice
     }
 }
+

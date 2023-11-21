@@ -201,3 +201,19 @@ function removeItemForm()
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
 }
+
+//form submits
+function addItemSubmit()
+{
+    itemName = document.getElementById("newItemName").value;
+    itemPrice = document.getElementById("newItemPrice").value;
+    itemLink = document.getElementById("newItemLink").value;
+    itemDesc = document.getElementById("newItemDesc").value;
+
+    itemPrice = formatter.format(itemPrice);
+
+    menu = localStorage.getItem("menu");
+    menu += '*'+ itemName + '|' + itemPrice + '|'+ itemLink +'|' + itemDesc;
+    localStorage.setItem("menu", menu);
+    alert("New Item Added!")
+}

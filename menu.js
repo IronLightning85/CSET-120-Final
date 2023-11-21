@@ -8,16 +8,18 @@ if(!localStorage.getItem("count"))
 // displays manager button
 if(localStorage.getItem("isManager") == "true")
 {
-        let newButtonDiv = document.createElement("div");
-        let location = document.getElementsByClassName("topnav")[0];
-        let buttonContents = '<a href="editMenu.html"><button>Edit Menu</button></a>';
-        newButtonDiv.innerHTML = buttonContents;
-        location.append(newButtonDiv);
+    let newButtonDiv = document.createElement("div");
+    let location = document.getElementsByClassName("topnav")[0];
+    let buttonContents = '<a href="editMenu.html"><button>Edit Menu</button></a>';
+    newButtonDiv.innerHTML = buttonContents;
+    location.append(newButtonDiv);
 }
 
 
-
-showMenu();
+if(document.getElementsByClassName("shop-items")[0])
+{
+    showMenu();
+}
 
 function showMenu()
 {
@@ -164,3 +166,23 @@ function updatePrice()
     }
 }
 
+// manager page js
+
+//set form html
+function addItemForm()
+{
+    let setForm = document.getElementsByClassName("formInputs")[0];
+    setForm.innerHTML = '<form><label>Item Name: </label>  <input id="newItemName" name="newItemName" type="text" placeholder="Veggie Soup...." required=""><br><br><label>Price: </label>  <input id="newItemPrice" name="newItemPrice" type="text" placeholder="3.75..." required=""><br><br><label>Image Link: </label>  <input id="newItemLink" name="newItemLink" type="text" placeholder="image.jpg..." required=""><br><br><label>Item Description: </label>  <input id="newItemDesc" name="newItemDesc" type="text" placeholder="A warm soup made with..." required=""><br><br><button onclick="addItemSubmit()">Submit</button></form>'
+}
+
+function editItemForm()
+{
+    let setForm = document.getElementsByClassName("formInputs")[0];
+    
+}
+
+function removeItemForm()
+{
+    let setForm = document.getElementsByClassName("formInputs")[0];
+    setForm.innerHTML = '';
+}

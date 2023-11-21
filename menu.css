@@ -247,8 +247,6 @@ html, body
 .cart-total-price {
     color: #333;
     font-size: 1.1em;
-    style: 'currency';
-    currency: 'USD';
 }
 
 .btn-purchase {

@@ -50,13 +50,15 @@ function showMenu()
 }
 
 //called by showMenu function for each item that needs to be displayed. It displays a single item with its name, image, price, and item info
-function addItem(itemName, price, imgLink, itemInfo)
+function addItem(itemName, price, imgLink, itemInfo) // FIX TO NOT PUT UNDEFINED
 {
     if (localStorage.getItem("menu").length > 0)
     {
-        var menuRow = document.createElement("div");
-        menuRow.classList.add("menu-row");
-        var newItem = document.getElementsByClassName("shop-items")[0];
+        if (item != undefined && item != '')
+        {
+        var menuRow = document.createElement("div")
+        menuRow.classList.add("menu-row")
+        var newItem = document.getElementsByClassName("shop-items")[0]
         var menuRowContents = `
             <div class="shop-item">
                 <span class="shop-item-title">${itemName}</span>
@@ -70,6 +72,7 @@ function addItem(itemName, price, imgLink, itemInfo)
                 </div>
             </div>
         `;
+          
         menuRow.innerHTML = menuRowContents;
         newItem.append(menuRow);
         menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)});

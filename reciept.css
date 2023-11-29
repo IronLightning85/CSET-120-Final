@@ -1,0 +1,117 @@
+*
+{
+    padding: 0px;
+    margin: 0px;
+    scroll-behavior: smooth;
+}
+
+html, body
+{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.header
+{
+    background-image: url(images/red\ dead.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+/* nav bar */
+.topnav {
+    background-image: url('images/wood2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 10vh;
+    margin-bottom: 25px;
+    border-bottom: 3px solid black;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav button {
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 25px;
+    border: 2px solid black;
+    background: hsla(32, 100%, 39%, 1);
+    background: radial-gradient(circle, hsla(32, 100%, 39%, 1) 17%, hsla(0, 100%, 41%, 1) 100%);
+    background: -moz-radial-gradient(circle, hsla(32, 100%, 39%, 1) 17%, hsla(0, 100%, 41%, 1) 100%);
+    background: -webkit-radial-gradient(circle, hsla(32, 100%, 39%, 1) 17%, hsla(0, 100%, 41%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#C66900", endColorstr="#D20000", GradientType=1 );
+    
+  }
+
+
+
+/* footer */
+.footer
+{
+    display: inline-block;
+    width: 94.8%;
+    height: 10vh;
+    background-color: #333;
+    padding: 50px;
+}
+
+.footer_nav
+{
+    list-style: none;
+    float: left;
+}
+
+.social_links
+{
+    list-style: none;
+    float: right;
+    margin-right: 25px;
+}
+
+.footer_nav li, .social_links li
+{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer_nav li:last-child,
+.social_links li:last-child {
+    margin-right: 0;
+}
+
+.footer_nav li a:link,
+.footer_nav li a:visited
+{
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.footer_nav li a:hover,
+.footer_nav li a:active {
+    color: #ddd;
+}
+
+.social_links li a:link,
+.social_links li a:visited {
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    font-size: 160%;
+    transition: color 0s.2s;
+}
+
+.footer p {
+    padding-top: 20px;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}

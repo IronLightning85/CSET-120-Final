@@ -43,10 +43,12 @@ function showMenu()
     }
 }
 
-function addItem(itemName, price, imgLink, itemInfo)
+function addItem(itemName, price, imgLink, itemInfo) // FIX TO NOT PUT UNDEFINED
 {
     if (localStorage.getItem("menu").length > 0)
     {
+        if (item != undefined && item != '')
+        {
         var menuRow = document.createElement("div")
         menuRow.classList.add("menu-row")
         var newItem = document.getElementsByClassName("shop-items")[0]
@@ -67,6 +69,7 @@ function addItem(itemName, price, imgLink, itemInfo)
         newItem.append(menuRow)
         //console.log("BUTTON EDITED:", menuRow.getElementsByClassName("btn-primary")[0])
         menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)})
+        }
     }
 }
 

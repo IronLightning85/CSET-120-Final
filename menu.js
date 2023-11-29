@@ -200,41 +200,51 @@ function removeItemForm()
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
-    menu = localStorage.getItem("menu");
-    menuArr = menu.split('*');
-    for(let i = 0; i < menuArr.length; i++)
+    console.log("MENU:", localStorage.getItem("menu"))
+    if (localStorage.getItem("menu").length > 0)
     {
-        item = menuArr[i].split("|");
-        console.log(item)
-        addManagerItem(item[0], item[1], item[2], item[3]);
+        menu = localStorage.getItem("menu");
+        menuArr = menu.split('*');
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            console.log(item)
+            if (item != undefined && item != '')
+            {
+                addManagerItem(item[0], item[1], item[2], item[3]);
+            }
+        }
     }
 }
 
 function addManagerItem(itemName, price, imgLink, itemInfo)
 {
-    var menuRow = document.createElement("div")
-    menuRow.classList.add("menu-row")
-    var newItem = document.getElementsByClassName("editMenuForm")[0]
-    var menuRowContents = `
-        <div class="shop-item">
-            <span class="shop-item-title">${itemName}</span>
-            <img class="shop-item-image" src="${imgLink}">
-            <div class="shop-item-details">
-                <span class="shop-item-price">${price}</span>
-                <button class="btn btn-danger" type="button">REMOVE</button>
+    if (localStorage.getItem("menu").length > 0)
+    {
+        var menuRow = document.createElement("div")
+        menuRow.classList.add("menu-row")
+        var newItem = document.getElementsByClassName("formInputs")[0]
+        var menuRowContents = `
+            <div class="shop-item">
+                <span class="shop-item-title">${itemName}</span>
+                <img class="shop-item-image" src="${imgLink}">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">${price}</span>
+                    <button class="btn btn-danger" type="button">REMOVE</button>
+                </div>
+                <div class="shop-item-details2">
+                    <p class="shop-item-info">${itemInfo}</p>
+                </div>
             </div>
-            <div class="shop-item-details2">
-                <p class="shop-item-info">${itemInfo}</p>
-            </div>
-        </div>
-    `
-    menuRow.innerHTML = menuRowContents
-    newItem.append(menuRow)
-    //console.log("BUTTON EDITED:", menuRow.getElementsByClassName("btn-primary")[0])
-    menuRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeManagerItem(itemName)})
+        `
+        menuRow.innerHTML = menuRowContents
+        newItem.append(menuRow)
+        //console.log("BUTTON EDITED:", menuRow.getElementsByClassName("btn-primary")[0])
+        menuRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeManagerItem(itemName)})
+    }
 }
 
-function removeManagerItem(itemName) // CONTINUE WORKING TO REMOVE ELEMENT FROM LOCALSTORAGE AND THE CURRENT PAGE
+function removeManagerItem(itemName) // REMOVES ELEMENT FROM PAGE
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
@@ -246,9 +256,9 @@ function removeManagerItem(itemName) // CONTINUE WORKING TO REMOVE ELEMENT FROM 
     for(let i = 0; i < menuArr.length; i++)
     {
         currentItem = menuArr[i].split("|");
-        console.log(currentItem)
-        console.log(i, "==", menuArr.length, "|", itemName, "!=", currentItem[0], "IS", itemName != currentItem[0])
-        if (itemName != currentItem[0])
+        //console.log(currentItem)
+        //console.log(i, "==", menuArr.length, "|", itemName, "!=", currentItem[0], "IS", itemName != currentItem[0])
+        if (itemName != currentItem[0] && currentItem != undefined && currentItem != '')
         {
             finalString += currentItem[0] + "|" + currentItem[1] + "|" + currentItem[2] + "|" + currentItem[3] + "*"
         }
@@ -258,7 +268,7 @@ function removeManagerItem(itemName) // CONTINUE WORKING TO REMOVE ELEMENT FROM 
             finalString = finalString.replace(/.$/,"")
         }
 
-        console.log("FINAL STRING:", finalString)
+        //console.log("FINAL STRING:", finalString)
     }
 
     for(let v = 0; v < document.getElementsByClassName("menu-row").length; v++)
@@ -273,13 +283,18 @@ function removeManagerItem(itemName) // CONTINUE WORKING TO REMOVE ELEMENT FROM 
     setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
 
-    menu = localStorage.getItem("menu");
-    menuArr = menu.split('*');
-    for(let i = 0; i < menuArr.length; i++)
+    console.log("MENU:", localStorage.getItem("menu"))
+    if (localStorage.getItem("menu").length > 0)
     {
-        item = menuArr[i].split("|");
-        //console.log(item)
-        addManagerItem(item[0], item[1], item[2], item[3]);
+        menu = localStorage.getItem("menu");
+        menuArr = menu.split('*');
+
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            //console.log(item)
+            addManagerItem(item[0], item[1], item[2], item[3]);
+        }
     }
 }
 

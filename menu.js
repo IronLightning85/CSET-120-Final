@@ -76,6 +76,7 @@ function addItem(itemName, price, imgLink, itemInfo) // FIX TO NOT PUT UNDEFINED
         menuRow.innerHTML = menuRowContents;
         newItem.append(menuRow);
         menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)});
+        }
     }
 }
 

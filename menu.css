@@ -16,6 +16,7 @@ html, body
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: 5%;
+    min-height: 300vh;
     background-image: url(images/stardewbackground.png);
     background-attachment: fixed;
 }

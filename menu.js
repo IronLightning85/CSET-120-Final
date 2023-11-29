@@ -38,7 +38,7 @@ function showMenu()
     for(let i = 0; i < menuArr.length; i++)
     {
         item = menuArr[i].split("|");
-        console.log(item)
+        //console.log(item)
         addItem(item[0], item[1], item[2], item[3]);
     }
 }
@@ -112,16 +112,33 @@ function addToCart(itemName, price, imgLink)
     updatePrice()
 }
 
-function purchaseClicked()
+function purchaseClicked() // remove items from cart and stores them into local storage for reciet page
 {
-    alert("Your order has been placed")
-    var cartItems = document.getElementsByClassName("cart-items")[0]
-    while (cartItems.hasChildNodes())
+    if(document.getElementsByClassName("cart-item-title")[0])
     {
-        cartItems.removeChild(cartItems.firstChild)
-    }
+        alert("Your order has been placed")
+        var cartItems = document.getElementsByClassName("cart-items")[0]
+        var itemsBought = "" //a string wih values seperated by | and items seperated by *
+        while (cartItems.hasChildNodes())
+        {
+            count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
+            item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
+            price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
+            itemsBought += item + "|" + count + "|" + price + "*";
 
-    updatePrice()
+            cartItems.removeChild(cartItems.firstChild)
+            
+        }
+
+        localStorage.setItem("currentReciept", itemsBought);
+        updatePrice()
+        
+        window.location.href = "reciept.html";
+    }
+    else
+    {
+        alert("Please add an item to your cart");
+    }
 }
 
 function removeItem(itemName)

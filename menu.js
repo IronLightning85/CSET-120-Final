@@ -247,14 +247,18 @@ function removeManagerItem(itemName) // CONTINUE WORKING TO REMOVE ELEMENT FROM 
     {
         currentItem = menuArr[i].split("|");
         console.log(currentItem)
-        if (itemName != currentItem[0] && i + 1 != menuArr.length)
+        console.log(i, "==", menuArr.length, "|", itemName, "!=", currentItem[0], "IS", itemName != currentItem[0])
+        if (itemName != currentItem[0])
         {
             finalString += currentItem[0] + "|" + currentItem[1] + "|" + currentItem[2] + "|" + currentItem[3] + "*"
         }
-        else if (itemName != currentItem[0] && i + 1 == menuArr.length)
+        
+        if (i + 1 == menuArr.length)
         {
-            finalString += currentItem[0] + "|" + currentItem[1] + "|" + currentItem[2] + "|" + currentItem[3]
+            finalString = finalString.replace(/.$/,"")
         }
+
+        console.log("FINAL STRING:", finalString)
     }
 
     for(let v = 0; v < document.getElementsByClassName("menu-row").length; v++)
@@ -263,7 +267,7 @@ function removeManagerItem(itemName) // CONTINUE WORKING TO REMOVE ELEMENT FROM 
     }
 
     // SET MENU IN LOCALSTORAGE
-    console.log(finalString)
+    //console.log(finalString)
     localStorage.setItem("menu", finalString)
     
     setForm = document.getElementsByClassName("formInputs")[0];
@@ -274,7 +278,7 @@ function removeManagerItem(itemName) // CONTINUE WORKING TO REMOVE ELEMENT FROM 
     for(let i = 0; i < menuArr.length; i++)
     {
         item = menuArr[i].split("|");
-        console.log(item)
+        //console.log(item)
         addManagerItem(item[0], item[1], item[2], item[3]);
     }
 }

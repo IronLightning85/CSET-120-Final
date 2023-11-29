@@ -45,26 +45,29 @@ function showMenu()
 
 function addItem(itemName, price, imgLink, itemInfo)
 {
-    var menuRow = document.createElement("div")
-    menuRow.classList.add("menu-row")
-    var newItem = document.getElementsByClassName("shop-items")[0]
-    var menuRowContents = `
-        <div class="shop-item">
-            <span class="shop-item-title">${itemName}</span>
-            <img class="shop-item-image" src="${imgLink}">
-            <div class="shop-item-details">
-                <span class="shop-item-price">${price}</span>
-                <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+    if (localStorage.getItem("menu").length > 0)
+    {
+        var menuRow = document.createElement("div")
+        menuRow.classList.add("menu-row")
+        var newItem = document.getElementsByClassName("shop-items")[0]
+        var menuRowContents = `
+            <div class="shop-item">
+                <span class="shop-item-title">${itemName}</span>
+                <img class="shop-item-image" src="${imgLink}">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">${price}</span>
+                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                </div>
+                <div class="shop-item-details2">
+                    <p class="shop-item-info">${itemInfo}</p>
+                </div>
             </div>
-            <div class="shop-item-details2">
-                <p class="shop-item-info">${itemInfo}</p>
-            </div>
-        </div>
-    `
-    menuRow.innerHTML = menuRowContents
-    newItem.append(menuRow)
-    //console.log("BUTTON EDITED:", menuRow.getElementsByClassName("btn-primary")[0])
-    menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)})
+        `
+        menuRow.innerHTML = menuRowContents
+        newItem.append(menuRow)
+        //console.log("BUTTON EDITED:", menuRow.getElementsByClassName("btn-primary")[0])
+        menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)})
+    }
 }
 
 function addToCart(itemName, price, imgLink)

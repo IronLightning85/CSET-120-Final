@@ -200,7 +200,6 @@ function removeItemForm()
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
-
     menu = localStorage.getItem("menu");
     menuArr = menu.split('*');
     for(let i = 0; i < menuArr.length; i++)
@@ -278,4 +277,20 @@ function removeManagerItem(itemName) // CONTINUE WORKING TO REMOVE ELEMENT FROM 
         console.log(item)
         addManagerItem(item[0], item[1], item[2], item[3]);
     }
+}
+
+//form submits
+function addItemSubmit()
+{
+    itemName = document.getElementById("newItemName").value;
+    itemPrice = document.getElementById("newItemPrice").value;
+    itemLink = document.getElementById("newItemLink").value;
+    itemDesc = document.getElementById("newItemDesc").value;
+
+    itemPrice = formatter.format(itemPrice);
+
+    menu = localStorage.getItem("menu");
+    menu += '*'+ itemName + '|' + itemPrice + '|'+ itemLink +'|' + itemDesc;
+    localStorage.setItem("menu", menu);
+    alert("New Item Added!")
 }

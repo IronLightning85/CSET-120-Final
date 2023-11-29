@@ -15,10 +15,10 @@ html, body
 {
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
     background-image: url(images/pokemon.jpeg);
     background-attachment: fixed;
     padding-top: 25px;
+    min-height: 100vh;
 }
 
 .topnav {

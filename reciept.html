@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reciept</title>
     <link rel="stylesheet" href="reciept.css">
+    <link rel="icon" type="image/x-icon" href="images/favicons/read dead mountain.jpg">
+
 </head>
 <body>
     
@@ -17,15 +19,82 @@
 
 
         <!-- reciept body -->
+        <div class="receiptCenter">
         <div class="receipt">
+            <img class="watermark" src="images/favicons/fallut boy.png">
+            <div class="orderNo">
+              Order# <span id="Order #">71</span>: <span id="Order Name">Jet Set</span>
+            </div>
+            <div class="headerSubTitle">
+              Thank you for supporting the
+            </div>
+            <div class="headerTitle">
+              Gourmand
+            </div>
+            <div class="headerSubTitle">
+              A division of the CSET 120
+            </div>
+            <div id="location">
+              Griscom Education Center
+            </div>
+            <div id="date">
+              Friday, Dec 15 2023 12:00:00
+            </div>
+            <svg id="barcode"></svg>
+            <div class="keepIt">
+              Keep your receipt!
+            </div>
+            <div class="keepItBody">
+              This original receipt is required to pick up any items. Faulty goods can be exchanged within an hour of pickup or delivery. No returns are allowed after 1 hour. Unclaimed items can be claimed without receipt 1 hour after estimated order completion.
+            </div>
+            <br>
+            <hr>
+          
+            <!-- Items Purchased -->
+            <div class="items">
+            </div>
+          
+            <!-- Totals -->
+            <hr>
+            <br>
+          <div class="flex">
+              <div id="qrcode"></div>
+              <div class="totals">
+                <div class="section">
+                  <div class="row">
+                    <div class="col1"></div>
+                    <div class="col2">Subtotal</div>
+                    <div class="col3" id="subtotal">$61.25</div>
+                  </div>
+                  <div class="row">
+                    <div class="col1">0.06%</div>
+                    <div class="col2">Tax</div>
+                    <div class="col3" id="tax">$61.25</div>
+                  </div>
 
+                </div>
+                <div class="section">
+                  <div class="row">
+                    <div class="col1">Total</div>
+                    <div class="col2"></div>
+                    <div class="col3" id="total">$62.93</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="footer">
+              <div class="eta">Saturday @ 1:25 PM</div>
+              <div class="printType">customer copy</div>
+            </div>
+          </div>
         </div>
 
     </div>
 
 
     <!-- footer -->
-    <div class="footer">
+    <div class="footerMain">
         <div class="footer_row">
             <div class="col span-1-of-2">
                 <ul class="footer_nav">
@@ -53,6 +122,8 @@
             <p>Copyright &#169; 2023 by Gourmand. All rights reserved.</p>
         </div>
     </div>
+    <script src='https://cdn.jsdelivr.net/npm/jsbarcode@3.8.0/dist/barcodes/JsBarcode.code128.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js'></script>
     <script src="https://kit.fontawesome.com/c57df12baa.js" crossorigin="anonymous"></script>
     <script src="menu.js"></script>
 </body>

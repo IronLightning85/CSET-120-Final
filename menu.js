@@ -8,6 +8,12 @@ const formatter = new Intl.NumberFormat('en-US', {
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
+//sends user to log in page if they are not logged in and new page is loaded
+if(localStorage.getItem("isLoggedIn") != "true")
+{
+    window.location.href = "log_in.html"
+}
+
 //sets menu at start
 if(!localStorage.getItem("count"))
 {
@@ -33,7 +39,84 @@ if(document.getElementsByClassName("shop-items")[0])
 
 if(document.getElementsByClassName("receipt")[0])
 {
-    // display and do math for receipt
+    // display qr codes fin receipt
+    var receiptID = "20180613T130518.512Z";
+    var receiptQRID = "4#4s1Fs"
+
+    JsBarcode("#barcode", receiptID, {
+        format: "code128",
+        width: 1.3,
+        height: 30,
+        marginLeft: 0,
+        displayValue: false
+    });
+
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: "https://gg.bronyhouse.com/r/"+receiptQRID,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        width : 100,
+        height : 100,
+        correctLevel : QRCode.CorrectLevel.H,
+    }); 
+
+    // do math in the receipt
+    //get receipt
+    var overallPrice = 0;
+    var itemsBought1 = localStorage.getItem("currentReciept");
+    itemsBought1 = itemsBought1.split("*");
+    itemsBought1.pop();
+
+    //remove duplicates(first item always appears 4 times)
+    let itemsBought = [...new Set(itemsBought1)]
+    console.log(itemsBought);
+
+    for(let i = 0; i < itemsBought.length; i++)//iterate through items bought 
+    {
+        var newItemBought = document.createElement("div");
+        newItemBought.classList.add("item")
+        var appendLocaction = document.getElementsByClassName("items")[0]
+
+        //get values to be inputted into html
+        itemValues = itemsBought[i].split("|");
+        var itemName = itemValues[0];
+        var quantity = itemValues[1];
+        var price = itemValues[2];
+
+        // get total price or that item and add to total
+        priceEdited = Number(price.replace("$", ""));
+        var totalItemPrice = priceEdited * Number(quantity);
+        overallPrice += totalItemPrice;
+        totalItemPrice = formatter.format(totalItemPrice)
+
+        //add to html
+        newItemBoughtContents = `<div class="itemRow">
+        <div class="itemName">${itemName}</div>
+        <div class="itemPrice itemTaxable">${price}</div>
+      </div>
+      
+      <div class="itemRow">
+        <div class="itemColor"></div>
+        <div class="itemData1">DNC-P01</div>
+        <div class="itemData2">Quantity</div>
+        <div class="itemData3 itemQuantity">${quantity}</div>
+      </div>
+      
+      <div class="itemRow">
+        <div class="itemColor"></div>
+        <div class="itemData1">Print</div>
+        <div class="itemData2">Item Total</div>
+        <div class="itemData3">${totalItemPrice}</div>
+      </div>`
+
+      newItemBought.innerHTML = newItemBoughtContents;
+      appendLocaction.append(newItemBought);
+    }
+
+    //get subtotal, tax and total and add to receipt
+    document.getElementById("subtotal").innerHTML = formatter.format(overallPrice);
+    document.getElementById("tax").innerHTML = formatter.format(overallPrice * 0.06);
+    document.getElementById("total").innerHTML = formatter.format(overallPrice + overallPrice * 0.06);
 
 }
 

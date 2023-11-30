@@ -217,6 +217,148 @@ function editItemForm()
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
+    if (localStorage.getItem("menu").length > 0)
+    {
+        menu = localStorage.getItem("menu");
+        menuArr = menu.split('*');
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            if (item != undefined && item != '')
+            {
+                addEditorItem(item[0], item[1], item[2], item[3]);
+            }
+        }
+    }
+}
+
+function addEditorItem(itemName, price, imgLink, itemInfo) //Puts the item in an editor format for the manager
+{
+    if (localStorage.getItem("menu").length > 0)
+    {
+        var menuRow = document.createElement("div")
+        menuRow.classList.add("edit-row")
+        var newItem = document.getElementsByClassName("formInputs")[0]
+        var menuRowContents = `
+            <div class = "smallWordDiv">
+                <h2>${itemName}</h2>
+                <img class="mini-Image" src="${imgLink}">
+                <br>
+                <p>${price}<p>
+                <br>
+                <p>${itemInfo}<p>
+            </div>
+            <br>
+            <form onsubmit = "return false"><label>Item Name: </label>  <input id="newItemName" name="newItemName" type="text" placeholder="Item name...">
+            <br><br>
+            <label>Price: </label>  <input id="newItemPrice" name="newItemPrice" type="text" placeholder=${price}>
+            <br><br>
+            <label>Image Link: </label>  <input id="newItemLink" name="newItemLink" type="text" placeholder="Image Link...">
+            <br><br>
+            <label>Item Description: </label>  <input id="newItemDesc" name="newItemDesc" type="text" placeholder="Description...">
+            <br><br>
+            <button class="editButton">Save Changes</button></form>
+            <br><br>
+        `
+        menuRow.innerHTML = menuRowContents
+        newItem.append(menuRow)
+        menuRow.getElementsByClassName("editButton")[0].addEventListener('click', () => {editItem(itemName)})
+    }
+}
+
+function editItem(itemName) //Searches though the menu localstorage data too look at the item
+{
+    if (localStorage.getItem("menu").length > 0)
+    {
+        menu = localStorage.getItem("menu")
+        menuSplit = menu.split('*')
+        //console.log(menuArr, itemName)
+
+        menuEditItem(itemName, menuSplit)
+    }
+}
+
+function menuEditItem(itemName, menuSplit)
+{
+    let currentElement = ''
+    let finalMenu = ''
+    let newName = ''
+    let newPrice = ''
+    let newLink = ''
+    let newDesc = ''
+
+    for (let i = 0; i < document.getElementsByClassName("edit-row").length; i++)
+    {
+        currentElement = document.getElementsByClassName("edit-row")[i]
+        //console.log(currentElement, currentElement.getElementsByTagName("h2")[0].innerHTML)
+
+        if (itemName == currentElement.getElementsByTagName("h2")[0].innerHTML)
+        {
+            newName = currentElement.getElementsByTagName("input")[0].value
+            newPrice = currentElement.getElementsByTagName("input")[1].value
+            newLink = currentElement.getElementsByTagName("input")[2].value
+            newDesc = currentElement.getElementsByTagName("input")[3].value
+        }
+    }
+
+    for (let i = 0; i < menuSplit.length; i++)
+    {
+
+        if (menuSplit[i].split("|")[0] == itemName)
+        {
+            console.log("Found food!")
+            
+            if (newName != '')
+            {
+                finalMenu += newName + "|"
+            }
+
+            else
+            {
+                finalMenu += menuSplit[i].split("|")[0] + "|"
+            }
+
+            if (newPrice != '')
+            {
+                finalMenu += formatter.format(newPrice) + "|"
+            }
+
+            else
+            {
+                finalMenu += menuSplit[i].split("|")[1] + "|"
+            }
+
+            if (newLink != '')
+            {
+                finalMenu += newLink + "|"
+            }
+
+            else
+            {
+                finalMenu += menuSplit[i].split("|")[2] + "|"
+            }
+
+            if (newDesc != '')
+            {
+                finalMenu += newDesc + "|"
+            }
+
+            else
+            {
+                finalMenu += menuSplit[i].split("|")[3] + "*"
+            }
+        }
+
+        else
+        {
+            finalMenu += menuSplit[i].split("|")[0] + "|" + menuSplit[i].split("|")[1] + "|" + menuSplit[i].split("|")[2] + "|" + menuSplit[i].split("|")[3] + "*"
+        }
+        
+    }
+
+    finalMenu = finalMenu.replace(/.$/,"")
+    localStorage.setItem("menu", finalMenu)
+    editItemForm()
 }
 
 function removeItemForm()

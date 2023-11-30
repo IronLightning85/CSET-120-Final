@@ -109,7 +109,7 @@ html, body
 .editMenuForm
 {
     background-color: rgba(255, 255, 255, .7);
-    width: 50%;
+    width: 75%;
     border-radius: 100px;
     margin: auto;
     padding-top: 25px;
@@ -142,8 +142,10 @@ html, body
 
 .formInputs
 {
-    width: 50%;
-    display: inline-block;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     text-align: right;
     
 }
@@ -162,4 +164,40 @@ html, body
 .formInputs input
 {
     line-height: 3vh;
+}
+
+.edit-row
+{
+    text-align: right;
+    max-width: 35%;
+    padding: 5px;
+    margin: 10px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    background-color: rgb(194, 216, 209);
+}
+
+.mini-Image
+{
+    width: 100px;
+    border-radius: 5px;
+}
+
+.smallWordDiv
+{
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+    border-style: dashed;
+    border-color: black;
+    border-radius: 20px;
+    background-color: rgb(175, 194, 188);
+}
+
+.smallWordDiv img
+{
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
 }

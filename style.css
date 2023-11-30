@@ -27,12 +27,11 @@ html, body
 .header_text
 {
     text-align: center;
-    width: 1140px;
+    width: 75%;
     position: absolute;
     top: 10%;
-    left: 20%;
+    left: 11.5%;
     font-size: 240%;
-    /* word-spacing: 4; */
     text-transform: uppercase;
 }
 .main_text p

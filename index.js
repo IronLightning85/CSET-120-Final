@@ -1,4 +1,6 @@
 localStorage.setItem("Manager", "Password");
+localStorage.setItem("isManager", "false");
+localStorage.setItem("isLoggedIn", "false");
 
 function signUp()
 {
@@ -51,6 +53,7 @@ function logIn()
     {
         if(password === localStorage.getItem(email))
         {
+            localStorage.setItem("isLoggedIn", "true")
             if(email == "Manager")
             {
                 localStorage.setItem("isManager", "true");

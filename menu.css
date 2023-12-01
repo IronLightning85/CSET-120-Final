@@ -113,6 +113,12 @@ html, body
     vertical-align: middle;
     padding: .67em .67em;
     cursor: pointer;
+    transition: background-color .5s, box-shadow .5s;
+}
+
+.btn:hover
+{
+    box-shadow: 0px 0px 50px skyblue;
 }
 
 .btn-header {

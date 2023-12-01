@@ -21,16 +21,16 @@ html, body
     min-height: 100vh;
 }
 
-.topnav {
+.topnav1 {
     background-image: url(images/grass.png);
     overflow: hidden;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     height: 10vh;
-  }
+}
 
-.topnav button {
+.topnav1 button {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;

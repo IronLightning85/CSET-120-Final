@@ -146,3 +146,10 @@ function addRecoveryInfo(email) // Adds the recovery information into the local 
     }
 
 }
+
+function recoverAccount() // Makes a recover specific popup to give the password to the account if 1; The account exists, 2; The recovery info is correct
+{
+    console.log("TO BE DONE")
+}
+
+// Make it so that recover yes button deletes all elements so that the box can be a flex with the buttons.

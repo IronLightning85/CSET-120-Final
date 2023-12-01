@@ -486,7 +486,10 @@ function addItemSubmit()
     {
         alert("Price is not valid")
     }
-    
+    else if(Number(itemPrice) < 1 || Number(itemPrice) > 100)
+    {
+        alert("Price is not valid")
+    }
     else if(!isImage(itemLink))
     {
         alert("Image link invalid")
@@ -494,7 +497,6 @@ function addItemSubmit()
 
     else
     {
-        console.log(isImage(itemLink))
         itemPrice = formatter.format(itemPrice);
         menu = localStorage.getItem("menu");
         menu += '*'+ itemName + '|' + itemPrice + '|'+ itemLink +'|' + itemDesc;
@@ -507,7 +509,7 @@ function addItemSubmit()
 // CHECK IF IMAGE EXISTS
 function isImage(url) {
     return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
-  }
+}
   
   
 //displays items like showMenu() but is different because it has a remove button not add to cart

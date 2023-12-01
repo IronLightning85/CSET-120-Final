@@ -38,7 +38,13 @@ html, body
     border-radius: 25px;
     border: 2px solid black;
     background: skyblue;
+
 }
+.topnav1 button:hover{
+    cursor: pointer;
+
+}
+
 
 /* footer */
 .footer

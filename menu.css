@@ -41,6 +41,7 @@ html, body
     font-size: 17px;
     border-radius: 25px;
     border: 2px solid black;
+    cursor: pointer;
     background: hsla(233, 87%, 43%, 1);
     background: linear-gradient(270deg, hsla(233, 87%, 43%, 1) 0%, hsla(203, 47%, 45%, 1) 38%, hsla(156, 20%, 51%, 1) 73%, hsla(62, 33%, 58%, 1) 100%);
     background: -moz-linear-gradient(270deg, hsla(233, 87%, 43%, 1) 0%, hsla(203, 47%, 45%, 1) 38%, hsla(156, 20%, 51%, 1) 73%, hsla(62, 33%, 58%, 1) 100%);

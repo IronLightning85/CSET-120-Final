@@ -364,7 +364,7 @@ function editItem(itemName) //Searches though the menu localstorage data too loo
     }
 }
 
-function menuEditItem(itemName, menuSplit)
+function menuEditItem(itemName, menuSplit) // Checks each editor element and changes their values of that specific button was hit
 {
     let currentElement = ''
     let finalMenu = ''
@@ -392,7 +392,6 @@ function menuEditItem(itemName, menuSplit)
 
         if (menuSplit[i].split("|")[0] == itemName)
         {
-            console.log("Found food!")
             
             if (newName != '')
             {
@@ -404,7 +403,7 @@ function menuEditItem(itemName, menuSplit)
                 finalMenu += menuSplit[i].split("|")[0] + "|"
             }
 
-            if (newPrice != '')
+            if (newPrice != '' && newPrice > 0 && newPrice < 1000)
             {
                 finalMenu += formatter.format(newPrice) + "|"
             }

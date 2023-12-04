@@ -631,3 +631,45 @@ button
     font-size: 200%;
     color: white;
 }
+
+.popUpWindowRecovery
+{
+    position: absolute;
+    top: 20%;
+    left: 27.2%;
+    padding: 5%;
+    background-image: url(images/wood.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.popUpWindowRecovery label
+{
+    font-size: 200%;
+    color: white;
+}
+
+.popUpWindowRecovery input
+{
+    background-color: black;
+    font-size: 200%;
+    color: white;
+}
+
+.popUpTextDivRecov
+{
+    border-style: solid;
+    border-color: black;
+    font-size: 130%;
+    color: white;
+    background-image: url(images/wood2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 5px 5px 5px black;
+    border-radius: 8px;
+    padding: 10px;
+}

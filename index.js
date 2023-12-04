@@ -69,7 +69,7 @@ function logIn() // Checks if the user is logged in, logged in as manager, or th
         }
         else
         {
-            alert("Password is incorrect");
+            alert("Email and/or Password is Incorrect");
         }
     }
     else
@@ -80,7 +80,6 @@ function logIn() // Checks if the user is logged in, logged in as manager, or th
 
 function makePopup(divName, email) // Makes a popup window appear with a couple of elements
 {
-    console.log(email)
     var popUp = document.createElement("div")
     popUp.classList.add("popUpWindow")
     var newItem = document.getElementsByClassName(divName)[0]
@@ -138,18 +137,78 @@ function removeElementsByClass(className) // Thank you stack overflow for this f
 function addRecoveryInfo(email) // Adds the recovery information into the local storage
 {
     x = document.getElementsByClassName("addedInfo")[0]
-    console.log(x.getElementsByTagName("input")[0].value)
 
-    if (x.getElementsByTagName("input")[0].value != '')
+    console.log(localStorage.getItem(email), x.getElementsByTagName("input")[0].value)
+
+    if (localStorage.getItem(email) == x.getElementsByTagName("input")[0].value)
     {
-        localStorage.setItem(email + "|recovData", x.getElementsByTagName("input")[0].value)
+        alert("Your recovery data cannot be the same data as your password.")
     }
 
+    else if (x.getElementsByTagName("input")[0].value != '')
+    {
+        localStorage.setItem(email + "|recovData", x.getElementsByTagName("input")[0].value)
+        
+        alert("Recovery information added to your account!")
+        removeElementsByClass("popUpWindow")
+    }
 }
 
 function recoverAccount() // Makes a recover specific popup to give the password to the account if 1; The account exists, 2; The recovery info is correct
 {
-    console.log("TO BE DONE")
+    makePopupLogIn()
 }
 
-// Make it so that recover yes button deletes all elements so that the box can be a flex with the buttons.
+function submitRecovery()
+{
+    let email = document.getElementById("recovEmail").value;
+    let recoveryInput = document.getElementById("recovInfo").value;
+
+    if(localStorage.getItem(email))
+    {
+        let recoveryData = email + "|recovData"
+        recoveryData = localStorage.getItem(recoveryData)
+        
+        if (recoveryInput == recoveryData)
+        {
+            alert("Account found! Your password is: '" + localStorage.getItem(email) + "'")
+        }
+
+        else
+        {
+            alert("Email does not exist/Recovery data does not match.")
+        }
+    }
+
+    else
+    {
+        alert("Email does not exist/Recovery data does not match.");
+    }
+}
+
+function makePopupLogIn() // Makes a popup window appear with a couple of elements
+{
+    var popUp = document.createElement("div")
+    popUp.classList.add("popUpWindowRecovery")
+    var newItem = document.getElementsByClassName("logInMain")[0]
+    var popUpContents = `
+        <div class = "infoDiv">
+        <div class = "popUpTextDivRecov">
+            <h3>Please input your email and recovery information.</h3>
+        </div>
+        <br><br>
+        <form onsubmit = "return false"><label>Email: </label>  <input id="recovEmail" name="recovEmail" type="text" placeholder="Email" required="">
+        <br><br>
+        <label>Recovery information: </label>  <input id="recovInfo" name="recovInfo" type="text" placeholder="Recovery info" required="">
+        <br><br>
+        <button class="popUpButtonRecoverySubmit">Submit</button>
+        <br><br>
+        <button class="popUpButtonCancel">Cancel</button></form>
+        <br><br>
+        </div>
+    `
+    popUp.innerHTML = popUpContents
+    newItem.append(popUp)
+    popUp.getElementsByClassName("popUpButtonRecoverySubmit")[0].addEventListener('click', () => {submitRecovery()})
+    popUp.getElementsByClassName("popUpButtonCancel")[0].addEventListener('click', () => {removeElementsByClass("popUpWindowRecovery")})
+}

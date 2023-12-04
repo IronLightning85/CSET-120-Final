@@ -74,10 +74,14 @@ if(document.getElementsByClassName("receipt")[0])
 
     //remove duplicates(first item always appears 4 times)
     let itemsBought = [...new Set(itemsBought1)]
-    console.log(itemsBought);
+
+    //store items for purchase history
+    let key = localStorage.getItem("user") + "|history"
+    let values = [];
 
     for(let i = 0; i < itemsBought.length; i++)//iterate through items bought 
     {
+        values.push(itemsBought[i])
         var newItemBought = document.createElement("div");
         newItemBought.classList.add("item")
         var appendLocaction = document.getElementsByClassName("items")[0]
@@ -122,6 +126,28 @@ if(document.getElementsByClassName("receipt")[0])
     document.getElementById("subtotal").innerHTML = formatter.format(overallPrice);
     document.getElementById("tax").innerHTML = formatter.format(overallPrice * 0.06);
     document.getElementById("total").innerHTML = formatter.format(overallPrice + overallPrice * 0.06);
+
+    //set purchase history for this account with time
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    values.unshift(dateTime)
+    values.toString();
+
+    //make sure u dont overwrite previous purchase
+
+    //if user never bought anything
+    if(!localStorage.getItem(key))
+    {
+        localStorage.setItem(key, values);
+    }
+    else//update purchase history with new purchase
+    {
+        let previousHistory = localStorage.getItem(key);
+        previousHistory = previousHistory + "*" + values;
+        localStorage.setItem(key, previousHistory);
+    }
 
 }
 

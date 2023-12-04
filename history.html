@@ -3,37 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="editMenu.css">
-    <link rel="stylesheet" href="menu.css">
-    <link rel="icon" type="image/x-icon" href="/images/favicons/pokeball.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-    <title>Edit Menu</title>
+    <title>Reciept</title>
+    <link rel="stylesheet" href="history.css">
+    <link rel="icon" type="image/x-icon" href="images/favicons/read dead mountain.jpg">
+
 </head>
 <body>
-    <div class="topnav1">
-        <div><a href="menu.html"><button>Menu</button></a></div>
-        <div><a href="history.html"><button>Purchase History</button></a></div>
-        <div><a href="index.html"><button>Log Out</button></a></div>
-    </div>
-
-    <div class="mainEdit">
-        <div class="editMenuForm">
-            <div class="formButtons">
-                <button onclick="addItemForm()">Add Item</button>
-                <button onclick="editItemForm()">Edit Item</button>
-                <button onclick="removeItemForm()">Remove Item</button>
-            </div>
-            <br>
-            <br>
-            <div class="formInputs">
-            </div>
-
+    
+    <div class="header">
+        <div class="topnav">
+            <div><a href="menu.html"><button>Menu</button></a></div>
+            <div><a href="#"><button>Purchase History</button></a></div>
+            <div><a href="index.html"><button>Log Out</button></a></div>
         </div>
+
+
+        <section class="container content-section">
+          <h2 class="section-header" style="font-size: 75px;">Purchase History</h2>
+          <div class="purchase_history">
+            <!-- add new purchase for each purchase -->
+
+
+          </div>
+        </section>
+            
+
         <br>
     </div>
-
-    <div class="footer">
+    
+    <!-- footer -->
+    <div class="footerMain">
         <div class="footer_row">
             <div class="col span-1-of-2">
                 <ul class="footer_nav">
@@ -61,7 +60,10 @@
             <p>Copyright &#169; 2023 by Gourmand. All rights reserved.</p>
         </div>
     </div>
+    <script src='https://cdn.jsdelivr.net/npm/jsbarcode@3.8.0/dist/barcodes/JsBarcode.code128.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js'></script>
     <script src="https://kit.fontawesome.com/c57df12baa.js" crossorigin="anonymous"></script>
     <script src="menu.js"></script>
+    <script src="history.js"></script>
 </body>
 </html>

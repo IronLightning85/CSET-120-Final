@@ -1,0 +1,181 @@
+*
+{
+    padding: 0px;
+    margin: 0px;
+    scroll-behavior: smooth;
+}
+
+html, body
+{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.header
+{
+    background-image: url(images/minecraft.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* nav bar */
+.topnav {
+    background-image: url('images/dirt.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 10vh;
+    margin-bottom: 25px;
+    border-bottom: 3px solid black;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav button {
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 25px;
+    border: 2px solid black;
+    background: hsla(0, 0%, 45%, 1);
+
+    background: hsla(0, 0%, 45%, 1);
+
+    background: radial-gradient(circle, hsla(0, 0%, 45%, 1) 0%, hsla(0, 1%, 28%, 1) 100%);
+    
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 45%, 1) 0%, hsla(0, 1%, 28%, 1) 100%);
+    
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 45%, 1) 0%, hsla(0, 1%, 28%, 1) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#747474", endColorstr="#494848", GradientType=1 );
+
+  }
+
+.main_text p
+{
+    font-size: 40pt;
+}
+
+/* display history */
+.section-header {
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.content-section {
+    margin: 1em;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 100px;
+}
+
+.purchase_history {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.shop-item-title {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.shop-item-image {
+    height: 250px;
+}
+
+.shop-item-details {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.shop-item-price {
+    flex-grow: 1;
+    color: #333;
+    font-size: xx-large;
+}
+
+
+/* footer */
+.footerMain
+{
+    display: inline-block;
+    width: 94.8%;
+    height: 10vh;
+    background-color: #333;
+    padding: 50px;
+}
+
+.footer_nav
+{
+    list-style: none;
+    float: left;
+}
+
+.social_links
+{
+    list-style: none;
+    float: right;
+    margin-right: 25px;
+}
+
+.footer_nav li, .social_links li
+{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer_nav li:last-child,
+.social_links li:last-child {
+    margin-right: 0;
+}
+
+.footer_nav li a:link,
+.footer_nav li a:visited
+{
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.footer_nav li a:hover,
+.footer_nav li a:active {
+    color: #ddd;
+}
+
+.social_links li a:link,
+.social_links li a:visited {
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    font-size: 160%;
+    transition: color 0s.2s;
+}
+
+.footerMain p {
+    padding-top: 20px;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+

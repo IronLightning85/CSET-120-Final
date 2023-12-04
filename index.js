@@ -85,11 +85,13 @@ function makePopup(divName, email) // Makes a popup window appear with a couple 
     var newItem = document.getElementsByClassName(divName)[0]
     var popUpContents = `
         <div class = "infoDiv">
-            <h3>Would you like to add recovery information?</h3>
-            <br>
-            <button class="popUpButtonYes">Yes</button>
-            <button class="popUpButtonNo">No</button>
-            <br><br>
+            <div class = "secondarySignUpDiv">
+                <h3>Would you like to add recovery information?</h3>
+                <br>
+                <button class="popUpButtonYes">Yes</button>
+                <button class="popUpButtonNo">No</button>
+                <br><br>
+            </div>
         </div>
     `
     popUp.innerHTML = popUpContents

@@ -530,8 +530,10 @@ button
 {
     position: absolute;
     top: 20%;
-    left: 27.2%;
+    left: 25%;
     padding: 5%;
+    height: 40%;
+    width: 40%;
     background-color: rgb(120, 80, 17);
     border-style: solid;
     border-color: black;
@@ -548,6 +550,26 @@ button
     padding: 10px;
 }
 
+.secondarySignUpDiv h3
+{
+    font-size: 300%;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(170, 130, 67);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.infoDiv2 h3
+{
+    font-size: 300%;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(170, 130, 67);
+    border-radius: 8px;
+    padding: 10px;
+}
+
 .popUpButtonYes
 {
     border-style: solid;
@@ -556,7 +578,7 @@ button
     border-radius: 8px;
     padding: 5px;
     margin: 20px;
-    font-size: 30px;
+    font-size: 300%;
     transition: background-color 0.2s, block-shadow 0.2s;
 }
 
@@ -574,7 +596,7 @@ button
     border-radius: 8px;
     padding: 5px;
     margin: 20px;
-    font-size: 30px;
+    font-size: 300%;
     transition: background-color 0.2s, block-shadow 0.2s;
 }
 

@@ -55,6 +55,7 @@ function logIn() // Checks if the user is logged in, logged in as manager, or th
         if(password === localStorage.getItem(email))
         {
             localStorage.setItem("isLoggedIn", "true")
+            localStorage.setItem("user", email)
             if(email == "Manager")
             {
                 localStorage.setItem("isManager", "true");

@@ -19,6 +19,7 @@ if(!localStorage.getItem("DefaultMenu"))
 {
     localStorage.setItem("DefaultMenu", 1);
     localStorage.setItem("menu", "Veggie Cream Soup|$3.00|images/food/Creamy Soup.JPG|This creamy soup showcases the sweetness of vegetables in a veritable taste explosion.*Nut Cake|$4.00|images/food/Nut Cake.jpeg|Forest nuts give this cake a pleasant texture and a simple, understated sweetness.*Monster Rice Balls|$3.50|images/food/BotW Monster Rice Ball.jpeg|Rice balls flavored with monster extract. Their unique aroma is not for everyone.*Mud Cookies|$2.00|images/food/mudcookie_08_copy.jpg|Despite it's inappetizing appearance, consuming it is known to give one a burst of energy and a wonderful sweet taste for hours.*Cheesy Tomatoes|$2.00|images/food/cheesyTomato_01.png|A simple dish of Hylian tomato topped with delicious Hateno cheese. A perfect snack.*Monster Lasagna|$6.00|images/food/monsterLasagna_01.jpg|A deviously flavored dish with a hint of monster meat. It's harsh ingredients arn't for the faint of stomach.*Firecap Soup|$3.50|images/food/01_FirecapSoup.jpg|Boiled and stirred to perfection, firecap soup will make the coldest days seem warm with it's iconic flaming hot sensation.*Mango Rice|$2.75|images/food/mangoRice_01.jpg|Bland and sweet. A perfect mix to make your taste buds go wild. With a mango topping there is greatness in every bite.");
+    localStorage.setItem("orderNum", "0");
 }
 
 // displays manager button
@@ -91,7 +92,9 @@ if(document.getElementsByClassName("receipt")[0])
         var itemName = itemValues[0];
         var quantity = itemValues[1];
         var price = itemValues[2];
-        
+        var buyer = localStorage.getItem("recentCustomer");
+        var orderNumber = localStorage.getItem("orderNum");
+
         // get total price or that item and add to total
         priceEdited = Number(price.replace("$", ""));
         var totalItemPrice = priceEdited * Number(quantity);
@@ -133,6 +136,8 @@ if(document.getElementsByClassName("receipt")[0])
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
     document.getElementById("date").innerHTML = dateTime;
+    document.getElementById("location").innerHTML = buyer;
+    document.getElementById("Order #").innerHTML = orderNumber;
     values.unshift(dateTime);
     values.toString();
 
@@ -143,6 +148,12 @@ if(document.getElementsByClassName("receipt")[0])
     {
         localStorage.setItem(key, values);
         localStorage.setItem("duplicatorPreventor", "1");
+        localStorage.setItem("orderNum", "0");
+
+        //update order number
+        orderNum = localStorage.getItem("orderNum");
+        orderNum = Number(orderNum) + 1;
+        localStorage.setItem("orderNum", orderNum);
     }
     else if(localStorage.getItem("duplicatorPreventor") == "0")//update purchase history with new purchase
     {
@@ -150,6 +161,11 @@ if(document.getElementsByClassName("receipt")[0])
         previousHistory = previousHistory + "*" + values;
         localStorage.setItem(key, previousHistory);
         localStorage.setItem("duplicatorPreventor", "1");
+
+        //update order number
+        orderNum = localStorage.getItem("orderNum");
+        orderNum = Number(orderNum) + 1;
+        localStorage.setItem("orderNum", orderNum);
     }
 
 }

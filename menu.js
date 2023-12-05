@@ -262,8 +262,6 @@ function addToCart(itemName, price, imgLink)
 
 function purchaseClicked() // remove all items from cart and stores them into local storage for receipt page
 {
-    console.log("Name:", document.getElementById("receiptName").value)
-    console.log("TIP:", document.getElementById("tip").value)
     if(document.getElementsByClassName("cart-item-title")[0])
     {
         if (document.getElementById("receiptName").value != '' && document.getElementById("receiptName").value != undefined)

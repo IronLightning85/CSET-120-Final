@@ -79,6 +79,7 @@ if(document.getElementsByClassName("receipt")[0])
     //store items for purchase history
     let key = localStorage.getItem("user") + "|history"
     let values = [];
+    let itemCount = 0;
 
     for(let i = 0; i < itemsBought.length; i++)//iterate through items bought 
     {
@@ -123,6 +124,8 @@ if(document.getElementsByClassName("receipt")[0])
 
       newItemBought.innerHTML = newItemBoughtContents;
       appendLocaction.append(newItemBought);
+
+      itemCount++;
     }
 
     //get subtotal, tax and total and add to receipt
@@ -137,10 +140,35 @@ if(document.getElementsByClassName("receipt")[0])
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date+' '+time;
+    var dateTime = date +' '+ time;
+
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let dayOfWeek = days[today.getDay()]
+    
+    //update time ready
+    let minutes = itemCount * 15; //get total minutes
+    let hours = minutes / 60; //get hours
+    hours = Math.floor(hours);//floor hours
+    minutes = minutes % 60;//get minutes
+
+    //add those minutes and hours to current time
+    let finalhHours = today.getHours() + hours;
+    let finalMinutes = today.getMinutes() + minutes;
+
+    //make sure minutes dont overflow the next hour
+    if(minutes > 59)
+    {
+        finalhHours++;
+        finalMinutes -= 60;
+    }
+
+    let estimatedReady = dayOfWeek + " @ " + finalhHours + ":" + finalMinutes;
+
+
     document.getElementById("date").innerHTML = dateTime;
     document.getElementById("location").innerHTML = buyer;
     document.getElementById("Order #").innerHTML = orderNumber;
+    document.getElementsByClassName("eta")[0].innerHTML = estimatedReady;
     values.unshift(dateTime);
     values.toString();
 

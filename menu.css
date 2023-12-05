@@ -82,6 +82,16 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0E24CD", en
     font-size: 100%;
     border-color: black;
     border-radius: 5px;
+    color: black;
+    background-color: rgba(96, 215, 255, 0.51);
+}
+
+.formDiv select
+{
+    font-size: 100%;
+    border-color: black;
+    border-radius: 5px;
+    background-color: rgba(96, 215, 255, 0.51);
 }
 
 .shop-item {

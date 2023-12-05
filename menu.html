@@ -39,7 +39,13 @@
                     <strong class="cart-total-title">Total</strong>
                     <span class="cart-total-price">$0.00</span>
                 </div>
-                <button class="btn btn-primary btn-purchase" type="button" onclick="purchaseClicked()">PURCHASE</button>
+                <div class = "formDiv">
+                    <form onsubmit = "return false">
+                        <label>Name: </label>  <input id="receiptName" name="receiptName" type="text" placeholder="This will be on your receipt." required="">
+                        <br><br>
+                        <button class="btn btn-primary btn-purchase" type="button" onclick="purchaseClicked()">PURCHASE</button>
+                    </form>
+                </div>
             </section>
         
         </div>

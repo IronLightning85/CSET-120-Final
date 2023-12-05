@@ -246,28 +246,36 @@ function addToCart(itemName, price, imgLink)
 
 function purchaseClicked() // remove all items from cart and stores them into local storage for receipt page
 {
+    console.log("Name:", document.getElementById("receiptName").value)
     if(document.getElementsByClassName("cart-item-title")[0])
     {
-        alert("Your order has been placed");
-        var cartItems = document.getElementsByClassName("cart-items")[0];
-        var itemsBought = ""; //a string wih values seperated by | and items seperated by *
-        while (cartItems.hasChildNodes())
+        if (document.getElementById("receiptName").value != '' && document.getElementById("receiptName").value != undefined)
         {
-            count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
-            item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
-            price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
-            cartImg = cartItems.getElementsByClassName("cart-item-image")[0].src;
-            itemsBought += item + "|" + count + "|" + price + "|" + cartImg + "*";
+            localStorage.setItem("recentCustomer", document.getElementById("receiptName").value)
+            alert("Your order has been placed");
+            var cartItems = document.getElementsByClassName("cart-items")[0];
+            var itemsBought = ""; //a string wih values seperated by | and items seperated by *
+            while (cartItems.hasChildNodes())
+            {
+                count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
+                item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
+                price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
+                cartImg = cartItems.getElementsByClassName("cart-item-image")[0].src;
+                itemsBought += item + "|" + count + "|" + price + "|" + cartImg + "*";
+                cartItems.removeChild(cartItems.firstChild);
+            }
 
-            cartItems.removeChild(cartItems.firstChild);
+            localStorage.setItem("currentReciept", itemsBought);
+            localStorage.setItem("duplicatorPreventor", "0");
+            updatePrice();
             
+            window.location.href = "reciept.html";
         }
 
-        localStorage.setItem("currentReciept", itemsBought);
-        localStorage.setItem("duplicatorPreventor", "0");
-        updatePrice();
-        
-        window.location.href = "reciept.html";
+        else
+        {
+            alert("Please add a name to your order.")
+        }
     }
     else
     {

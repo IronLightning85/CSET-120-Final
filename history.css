@@ -32,7 +32,7 @@ html, body
     height: 10vh;
     margin-bottom: 25px;
     border-bottom: 3px solid black;
-  }
+}
   
   /* Style the links inside the navigation bar */
   .topnav button {
@@ -54,7 +54,7 @@ html, body
     
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#747474", endColorstr="#494848", GradientType=1 );
 
-  }
+}
 
 .main_text p
 {
@@ -81,12 +81,16 @@ html, body
     border-radius: 100px;
 }
 
-.purchase_history {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.purchase_history hr
+{
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
 }
 
+.purchase_history {
+    text-align: center;
+}
 
 .shop-item-title {
     display: block;
@@ -100,6 +104,8 @@ html, body
 
 .shop-item-image {
     height: 250px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px black;
 }
 
 .shop-item-details {
@@ -109,6 +115,13 @@ html, body
 }
 
 .shop-item-price {
+    flex-grow: 1;
+    color: #333;
+    font-size: xx-large;
+    margin-right: 20px;
+}
+
+.shop-item-quantity {
     flex-grow: 1;
     color: #333;
     font-size: xx-large;

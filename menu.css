@@ -31,23 +31,23 @@ html, body
     align-items: center;
     height: 10vh;
     margin-bottom: 25px;
-  }
+}
   
-  /* Style the links inside the navigation bar */
-  .topnav button {
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    border-radius: 25px;
-    border: 2px solid black;
-    cursor: pointer;
-    background: hsla(233, 87%, 43%, 1);
-    background: linear-gradient(270deg, hsla(233, 87%, 43%, 1) 0%, hsla(203, 47%, 45%, 1) 38%, hsla(156, 20%, 51%, 1) 73%, hsla(62, 33%, 58%, 1) 100%);
-    background: -moz-linear-gradient(270deg, hsla(233, 87%, 43%, 1) 0%, hsla(203, 47%, 45%, 1) 38%, hsla(156, 20%, 51%, 1) 73%, hsla(62, 33%, 58%, 1) 100%);
-    background: -webkit-linear-gradient(270deg, hsla(233, 87%, 43%, 1) 0%, hsla(203, 47%, 45%, 1) 38%, hsla(156, 20%, 51%, 1) 73%, hsla(62, 33%, 58%, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0E24CD", endColorstr="#3D7FA8", GradientType=1 );
-  }
+/* Style the links inside the navigation bar */
+.topnav button {
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+border-radius: 25px;
+border: 2px solid black;
+cursor: pointer;
+background: hsla(233, 87%, 43%, 1);
+background: linear-gradient(270deg, hsla(233, 87%, 43%, 1) 0%, hsla(203, 47%, 45%, 1) 38%, hsla(156, 20%, 51%, 1) 73%, hsla(62, 33%, 58%, 1) 100%);
+background: -moz-linear-gradient(270deg, hsla(233, 87%, 43%, 1) 0%, hsla(203, 47%, 45%, 1) 38%, hsla(156, 20%, 51%, 1) 73%, hsla(62, 33%, 58%, 1) 100%);
+background: -webkit-linear-gradient(270deg, hsla(233, 87%, 43%, 1) 0%, hsla(203, 47%, 45%, 1) 38%, hsla(156, 20%, 51%, 1) 73%, hsla(62, 33%, 58%, 1) 100%);
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0E24CD", endColorstr="#3D7FA8", GradientType=1 );
+}
 
 
 
@@ -69,6 +69,19 @@ html, body
     padding: 0 1.5em;
     background-color: rgba(255, 255, 255, .8);
     border-radius: 100px;
+}
+
+.formDiv
+{
+    font-size: 150%;
+    padding-top: 30px;
+}
+
+.formDiv input
+{
+    font-size: 100%;
+    border-color: black;
+    border-radius: 5px;
 }
 
 .shop-item {

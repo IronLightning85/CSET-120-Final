@@ -58,7 +58,7 @@ if(document.getElementsByClassName("receipt")[0])
     });
 
     var qrcode = new QRCode(document.getElementById("qrcode"), {
-        text: "https://gg.bronyhouse.com/r/"+receiptQRID,
+        text: "https://cataas.com/cat/gif"+receiptQRID,
         colorDark : "#000000",
         colorLight : "#ffffff",
         width : 100,
@@ -128,7 +128,10 @@ if(document.getElementsByClassName("receipt")[0])
     //get subtotal, tax and total and add to receipt
     document.getElementById("subtotal").innerHTML = formatter.format(overallPrice);
     document.getElementById("tax").innerHTML = formatter.format(overallPrice * 0.06);
-    document.getElementById("total").innerHTML = formatter.format(overallPrice + overallPrice * 0.06);
+    document.getElementById("taxCol1").innerHTML = "6%"
+    document.getElementById("tip").innerHTML = formatter.format(overallPrice * localStorage.getItem("recentTip"))
+    document.getElementById("tipCol1").innerHTML = String(localStorage.getItem("recentTip") * 100) + "%"
+    document.getElementById("total").innerHTML = formatter.format(overallPrice + overallPrice * 0.06 + overallPrice * localStorage.getItem("recentTip"));
 
     //set purchase history for this account with time
     var today = new Date();

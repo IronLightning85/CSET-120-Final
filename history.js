@@ -18,6 +18,11 @@ for(let i = 0; i < userhistory.length; i++)
     <h2 class="section-header" style="font-size: 50px; display: block;">${purchase[0]}</h2>`;
     endHTML = `</div>`;
 
+    if (userhistory.length > 1 && i + 1 != userhistory.length)
+    {
+      endHTML += "<hr>"
+    }
+
     middleHTML = ``;
 
     for(let j = 1; j < purchase.length; j++)
@@ -30,13 +35,13 @@ for(let i = 0; i < userhistory.length; i++)
         img = itemData[3];
 
         middleHTML += `<div class="item">
-        <span class="shop-item-title" style="text-align: left;">${itemName}</span>
+        <span class="shop-item-title">${itemName}</span>
         <img class="shop-item-image" src=${img}>
         <div class="shop-item-details">
-          <span class="shop-item-price">${itemPrice}</span>
-          <span class="shop-item-price" style="text-align: left;">Quantity: ${itemQuantity}</span>
+          <span class="shop-item-price" style="text-align: right;">${itemPrice}</span>
+          <span class="shop-item-quantity" style="text-align: left;">Quantity: ${itemQuantity}</span>
         </div>
-      </div>`
+      </div><br>`
     }
     
     finalHTML = startHTML + middleHTML + endHTML;

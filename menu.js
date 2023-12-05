@@ -91,7 +91,7 @@ if(document.getElementsByClassName("receipt")[0])
         var itemName = itemValues[0];
         var quantity = itemValues[1];
         var price = itemValues[2];
-
+        
         // get total price or that item and add to total
         priceEdited = Number(price.replace("$", ""));
         var totalItemPrice = priceEdited * Number(quantity);
@@ -132,7 +132,8 @@ if(document.getElementsByClassName("receipt")[0])
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
-    values.unshift(dateTime)
+    document.getElementById("date").innerHTML = dateTime;
+    values.unshift(dateTime);
     values.toString();
 
     //make sure u dont overwrite previous purchase
@@ -141,12 +142,14 @@ if(document.getElementsByClassName("receipt")[0])
     if(!localStorage.getItem(key))
     {
         localStorage.setItem(key, values);
+        localStorage.setItem("duplicatorPreventor", "1");
     }
-    else//update purchase history with new purchase
+    else if(localStorage.getItem("duplicatorPreventor") == "0")//update purchase history with new purchase
     {
         let previousHistory = localStorage.getItem(key);
         previousHistory = previousHistory + "*" + values;
         localStorage.setItem(key, previousHistory);
+        localStorage.setItem("duplicatorPreventor", "1");
     }
 
 }
@@ -253,13 +256,15 @@ function purchaseClicked() // remove all items from cart and stores them into lo
             count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
             item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
             price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
-            itemsBought += item + "|" + count + "|" + price + "*";
+            cartImg = cartItems.getElementsByClassName("cart-item-image")[0].src;
+            itemsBought += item + "|" + count + "|" + price + "|" + cartImg + "*";
 
             cartItems.removeChild(cartItems.firstChild);
             
         }
 
         localStorage.setItem("currentReciept", itemsBought);
+        localStorage.setItem("duplicatorPreventor", "0");
         updatePrice();
         
         window.location.href = "reciept.html";

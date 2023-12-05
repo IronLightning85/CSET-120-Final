@@ -104,7 +104,8 @@ html, body
 
 .shop-item-image {
     height: 250px;
-    border-radius: 20px;
+    padding: 10px;
+    background-image: url(images/stone.webp);
     box-shadow: 5px 5px 5px black;
 }
 

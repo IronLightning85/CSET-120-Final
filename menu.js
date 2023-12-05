@@ -247,10 +247,12 @@ function addToCart(itemName, price, imgLink)
 function purchaseClicked() // remove all items from cart and stores them into local storage for receipt page
 {
     console.log("Name:", document.getElementById("receiptName").value)
+    console.log("Payment:", document.getElementById("payMethod").value)
     if(document.getElementsByClassName("cart-item-title")[0])
     {
         if (document.getElementById("receiptName").value != '' && document.getElementById("receiptName").value != undefined)
         {
+            localStorage.setItem("recentPayment", document.getElementById("payMethod").value)
             localStorage.setItem("recentCustomer", document.getElementById("receiptName").value)
             alert("Your order has been placed");
             var cartItems = document.getElementsByClassName("cart-items")[0];

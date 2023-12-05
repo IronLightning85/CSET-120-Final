@@ -32,10 +32,11 @@ for(let i = 0; i < userhistory.length; i++)
         itemName = itemData[0];
         itemQuantity = itemData[1];
         itemPrice = itemData[2];
+        img = itemData[3];
 
         middleHTML += `<div class="item">
         <span class="shop-item-title">${itemName}</span>
-        <img class="shop-item-image" src="images/food/Creamy Soup.JPG">
+        <img class="shop-item-image" src=${img}>
         <div class="shop-item-details">
           <span class="shop-item-price" style="text-align: right;">${itemPrice}</span>
           <span class="shop-item-quantity" style="text-align: left;">Quantity: ${itemQuantity}</span>

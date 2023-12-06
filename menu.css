@@ -125,10 +125,60 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0E24CD", en
     font-size: xx-large;
 }
 
-.shop-items {
+.shop-items-0 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+
+.shop-items-1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.shop-items-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.shop-items-3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.hyper
+{
+    text-align: center;
+}
+
+.hyper hr
+{
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.hyper a
+{
+    text-decoration: none;
+    margin: 25px;
+    color: black;
+}
+
+.hyper a:hover
+{
+    color: blue;
+    border-bottom-style: solid;
+    border-bottom-color: skyblue;
+}
+
+.hyper p
+{
+    text-decoration: none;
+    font-size: 200%;
 }
 
 .btn {

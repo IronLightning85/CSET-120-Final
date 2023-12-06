@@ -177,6 +177,11 @@ button:hover
     line-height: 3vh;
 }
 
+.formInputs select
+{
+    font-size: 17px;
+}
+
 .edit-row
 {
     text-align: right;

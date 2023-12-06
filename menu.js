@@ -20,7 +20,7 @@ if(!localStorage.getItem("DefaultMenu"))
     localStorage.setItem("DefaultMenu", 1);
     localStorage.setItem("menuMain", "Veggie Cream Soup|$3.00|images/food/Creamy Soup.JPG|This creamy soup showcases the sweetness of vegetables in a veritable taste explosion.*Monster Rice Balls|$3.50|images/food/BotW Monster Rice Ball.jpeg|Rice balls flavored with monster extract. Their unique aroma is not for everyone.*Monster Lasagna|$6.00|images/food/monsterLasagna_01.jpg|A deviously flavored dish with a main course of monster meat. It's harsh ingredients arn't for the faint of stomach but it's alluring smell and taste is worth every bite.*Firecap Soup|$3.50|images/food/01_FirecapSoup.jpg|Boiled and stirred to perfection, firecap soup will make the coldest days seem warm with it's iconic flaming hot sensation.*Mango Rice|$2.75|images/food/mangoRice_01.jpg|Bland and sweet, a perfect mix to make your taste buds go wild. With even a mango topping there is greatness in every bite.");
     localStorage.setItem("menuApp", "Cheesy Tomatoes|$2.00|images/food/cheesyTomato_01.png|A simple dish of Hylian tomato topped with delicious Hateno cheese. A perfect snack.")
-    localStorage.setItem("menuDrink", "TestMeal|$3.69|images/wood.jpg|Wood")
+    localStorage.setItem("menuDrink", "")
     localStorage.setItem("menuDesert", "Nut Cake|$4.00|images/food/Nut Cake.jpeg|Forest nuts give this cake a pleasant texture and a simple, understated sweetness.*Mud Cookies|$2.00|images/food/mudcookie_08_copy.jpg|Despite it's inappetizing appearance, consuming it is known to give one a burst of energy and a wonderful sweet taste that lasts for hours.")
     localStorage.setItem("orderNum", "0");
 }
@@ -676,7 +676,7 @@ function removeItemForm()
             item = menuArr[i].split("|");
             if (item != undefined && item != '')
             {
-                addManagerItem(item[0], item[1], item[2], item[3]);
+                addManagerItem(item[0], item[1], item[2], item[3], "menuMain");
             }
         }
     }
@@ -690,7 +690,7 @@ function removeItemForm()
             item = menuArr[i].split("|");
             if (item != undefined && item != '')
             {
-                addManagerItem(item[0], item[1], item[2], item[3]);
+                addManagerItem(item[0], item[1], item[2], item[3], "menuApp");
             }
         }
     }
@@ -704,7 +704,7 @@ function removeItemForm()
             item = menuArr[i].split("|");
             if (item != undefined && item != '')
             {
-                addManagerItem(item[0], item[1], item[2], item[3]);
+                addManagerItem(item[0], item[1], item[2], item[3], "menuDrink");
             }
         }
     }
@@ -718,7 +718,7 @@ function removeItemForm()
             item = menuArr[i].split("|");
             if (item != undefined && item != '')
             {
-                addManagerItem(item[0], item[1], item[2], item[3]);
+                addManagerItem(item[0], item[1], item[2], item[3], "menuDesert");
             }
         }
     }
@@ -802,7 +802,7 @@ function isImage(url) {
   
   
 //displays items like showMenu() but is different because it has a remove button not add to cart
-function addManagerItem(itemName, price, imgLink, itemInfo)
+function addManagerItem(itemName, price, imgLink, itemInfo, divName)
 {
     if (localStorage.getItem("menuMain").length > 0)
     {
@@ -826,19 +826,19 @@ function addManagerItem(itemName, price, imgLink, itemInfo)
         newItem.append(menuRow);
         
         //add event listener to all remove buttons that calls removeManagerItem
-        menuRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeManagerItem(itemName)});
+        menuRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeManagerItem(itemName, divName)});
     }
 }
 
 //removes element from page and local storage
-function removeManagerItem(itemName)
+function removeManagerItem(itemName, divName)
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
     let currentItem = "";
     let finalString = "";
 
-    menu = localStorage.getItem("menu");
+    menu = localStorage.getItem(divName);
     menuArr = menu.split('*');
     for(let i = 0; i < menuArr.length; i++)
     {
@@ -860,22 +860,10 @@ function removeManagerItem(itemName)
     }
 
     // SET MENU IN LOCALSTORAGE
-    localStorage.setItem("menu", finalString)
+    localStorage.setItem(divName, finalString)
     
     //resets page html so that the removed element is removed
-    setForm = document.getElementsByClassName("formInputs")[0];
-    setForm.innerHTML = '';
-    if (localStorage.getItem("menu").length > 0)
-    {
-        menu = localStorage.getItem("menu");
-        menuArr = menu.split('*');
-
-        for(let i = 0; i < menuArr.length; i++)
-        {
-            item = menuArr[i].split("|");
-            addManagerItem(item[0], item[1], item[2], item[3]);
-        }
-    }
+    removeItemForm()
 }
 
 function isNumberValid(imei)//luhn's algorithm

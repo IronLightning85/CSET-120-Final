@@ -18,7 +18,10 @@ if(localStorage.getItem("isLoggedIn") != "true")
 if(!localStorage.getItem("DefaultMenu"))
 {
     localStorage.setItem("DefaultMenu", 1);
-    localStorage.setItem("menu", "Veggie Cream Soup|$3.00|images/food/Creamy Soup.JPG|This creamy soup showcases the sweetness of vegetables in a veritable taste explosion.*Nut Cake|$4.00|images/food/Nut Cake.jpeg|Forest nuts give this cake a pleasant texture and a simple, understated sweetness.*Monster Rice Balls|$3.50|images/food/BotW Monster Rice Ball.jpeg|Rice balls flavored with monster extract. Their unique aroma is not for everyone.*Mud Cookies|$2.00|images/food/mudcookie_08_copy.jpg|Despite it's inappetizing appearance, consuming it is known to give one a burst of energy and a wonderful sweet taste that lasts for hours.*Cheesy Tomatoes|$2.00|images/food/cheesyTomato_01.png|A simple dish of Hylian tomato topped with delicious Hateno cheese. A perfect snack.*Monster Lasagna|$6.00|images/food/monsterLasagna_01.jpg|A deviously flavored dish with a main course of monster meat. It's harsh ingredients arn't for the faint of stomach but it's alluring smell and taste is worth every bite.*Firecap Soup|$3.50|images/food/01_FirecapSoup.jpg|Boiled and stirred to perfection, firecap soup will make the coldest days seem warm with it's iconic flaming hot sensation.*Mango Rice|$2.75|images/food/mangoRice_01.jpg|Bland and sweet, a perfect mix to make your taste buds go wild. With even a mango topping there is greatness in every bite.");
+    localStorage.setItem("menuMain", "Veggie Cream Soup|$3.00|images/food/Creamy Soup.JPG|This creamy soup showcases the sweetness of vegetables in a veritable taste explosion.*Monster Rice Balls|$3.50|images/food/BotW Monster Rice Ball.jpeg|Rice balls flavored with monster extract. Their unique aroma is not for everyone.*Monster Lasagna|$6.00|images/food/monsterLasagna_01.jpg|A deviously flavored dish with a main course of monster meat. It's harsh ingredients arn't for the faint of stomach but it's alluring smell and taste is worth every bite.*Firecap Soup|$3.50|images/food/01_FirecapSoup.jpg|Boiled and stirred to perfection, firecap soup will make the coldest days seem warm with it's iconic flaming hot sensation.*Mango Rice|$2.75|images/food/mangoRice_01.jpg|Bland and sweet, a perfect mix to make your taste buds go wild. With even a mango topping there is greatness in every bite.");
+    localStorage.setItem("menuApp", "Cheesy Tomatoes|$2.00|images/food/cheesyTomato_01.png|A simple dish of Hylian tomato topped with delicious Hateno cheese. A perfect snack.")
+    localStorage.setItem("menuDrink", "TestMeal|$3.69|images/wood.jpg|Wood")
+    localStorage.setItem("menuDesert", "Nut Cake|$4.00|images/food/Nut Cake.jpeg|Forest nuts give this cake a pleasant texture and a simple, understated sweetness.*Mud Cookies|$2.00|images/food/mudcookie_08_copy.jpg|Despite it's inappetizing appearance, consuming it is known to give one a burst of energy and a wonderful sweet taste that lasts for hours.")
     localStorage.setItem("orderNum", "0");
 }
 
@@ -36,9 +39,7 @@ if(localStorage.getItem("isManager") == "true")
     location.append(newButtonDiv);
 }
 
-
-
-if(document.getElementsByClassName("shop-items")[0])
+if(document.getElementsByClassName("shop-items-0")[0])
 {
     showMenu();
 }
@@ -210,42 +211,91 @@ if(document.getElementsByClassName("receipt")[0])
 //displays the items in the local storage menu in the menu page and edi menu page
 function showMenu()
 {
-    menu = localStorage.getItem("menu");
+    menuHyperlinks("hyper0")
+
+    menu = localStorage.getItem("menuMain");
     menuArr = menu.split('*');
     for(let i = 0; i < menuArr.length; i++)
     {
         item = menuArr[i].split("|");
-        addItem(item[0], item[1], item[2], item[3]);
+        addItem(item[0], item[1], item[2], item[3], "shop-items-0");
+    }
+
+    menuHyperlinks("hyper1")
+
+    menu = localStorage.getItem("menuApp");
+    menuArr = menu.split('*');
+    for(let i = 0; i < menuArr.length; i++)
+    {
+        item = menuArr[i].split("|");
+        addItem(item[0], item[1], item[2], item[3], "shop-items-1");
+    }
+
+    menuHyperlinks("hyper2")
+
+    menu = localStorage.getItem("menuDrink");
+    menuArr = menu.split('*');
+    for(let i = 0; i < menuArr.length; i++)
+    {
+        item = menuArr[i].split("|");
+        addItem(item[0], item[1], item[2], item[3], "shop-items-2");
+    }
+
+    menuHyperlinks("hyper3")
+
+    menu = localStorage.getItem("menuDesert");
+    menuArr = menu.split('*');
+    for(let i = 0; i < menuArr.length; i++)
+    {
+        item = menuArr[i].split("|");
+        addItem(item[0], item[1], item[2], item[3], "shop-items-3");
     }
 }
 
-//called by showMenu function for each item that needs to be displayed. It displays a single item with its name, image, price, and item info
-function addItem(itemName, price, imgLink, itemInfo) // FIX TO NOT PUT UNDEFINED
+function menuHyperlinks(divName)
 {
-    if (localStorage.getItem("menu").length > 0)
+    var hyperlinkRow = document.createElement("div")
+    hyperlinkRow.classList.add("hyperlink-row")
+    var newItem = document.getElementById(divName)
+    var hyperlinkRowContents = `
+    <div class="">
+        <p><a href="#hyper0">Main Menu</a><a href="#hyper1">Appetizers</a><a href="#hyper2">Drinks</a><a href="#hyper3">Deserts</a><a href="#hrefLink">Cart</a></p>
+        <br>
+        <hr>
+    </div>
+    `;
+    
+    hyperlinkRow.innerHTML = hyperlinkRowContents;
+    newItem.append(hyperlinkRow);
+}
+
+//called by showMenu function for each item that needs to be displayed. It displays a single item with its name, image, price, and item info
+function addItem(itemName, price, imgLink, itemInfo, divName) // FIX TO NOT PUT UNDEFINED
+{
+    if (localStorage.getItem("menuMain").length > 0)
     {
         if (item != undefined && item != '')
         {
-        var menuRow = document.createElement("div")
-        menuRow.classList.add("menu-row")
-        var newItem = document.getElementsByClassName("shop-items")[0]
-        var menuRowContents = `
-            <div class="shop-item">
-                <span class="shop-item-title">${itemName}</span>
-                <img class="shop-item-image" src="${imgLink}">
-                <div class="shop-item-details">
-                    <span class="shop-item-price">${price}</span>
-                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+            var menuRow = document.createElement("div")
+            menuRow.classList.add("menu-row")
+            var newItem = document.getElementsByClassName(divName)[0]
+            var menuRowContents = `
+                <div class="shop-item">
+                    <span class="shop-item-title">${itemName}</span>
+                    <img class="shop-item-image" src="${imgLink}">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">${price}</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                    <div class="shop-item-details2">
+                        <p class="shop-item-info">${itemInfo}</p>
+                    </div>
                 </div>
-                <div class="shop-item-details2">
-                    <p class="shop-item-info">${itemInfo}</p>
-                </div>
-            </div>
-        `;
-          
-        menuRow.innerHTML = menuRowContents;
-        newItem.append(menuRow);
-        menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)});
+            `;
+            
+            menuRow.innerHTML = menuRowContents;
+            newItem.append(menuRow);
+            menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)});
         }
     }
 }
@@ -403,7 +453,17 @@ function updatePrice()
 function addItemForm()
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
-    setForm.innerHTML = '<form><label>Item Name: </label>  <input id="newItemName" name="newItemName" type="text" placeholder="Veggie Soup...." required=""><br><br><label>Price: </label>  <input id="newItemPrice" name="newItemPrice" type="text" placeholder="3.75..." required=""><br><br><label>Image Link: </label>  <input id="newItemLink" name="newItemLink" type="text" placeholder="image.jpg..." required=""><br><br><label>Item Description: </label>  <input id="newItemDesc" name="newItemDesc" type="text" placeholder="A warm soup made with..." required=""><br><br><button onclick="addItemSubmit()">Submit</button></form>';
+    setForm.innerHTML = `<form><label>Item Name: </label>  <input id="newItemName" name="newItemName" type="text" placeholder="Veggie Soup...." required=""><br><br><label>Price: </label>  <input id="newItemPrice" name="newItemPrice" type="text" placeholder="3.75..." required=""><br><br><label>Image Link: </label>  <input id="newItemLink" name="newItemLink" type="text" placeholder="image.jpg..." required=""><br><br><label>Item Description: </label>  <input id="newItemDesc" name="newItemDesc" type="text" placeholder="A warm soup made with..." required=""><br><br>
+    <label>What menu will it go in:</label>
+    <select id="addSelect" name="addSelect">
+    <option value="0">Main</option>
+    <option value="1">Appetizers</option>
+    <option value="2">Drinks</option>
+    <option value="3">Deserts</option>
+    </select><br><br>
+    <button>Submit</button></form>
+    `;
+    setForm.getElementsByTagName("button")[0].addEventListener('click', () => {addItemSubmit(document.getElementsByTagName("select")[0].value)})
 }
 
 //changes innerhtml to edit item
@@ -411,9 +471,51 @@ function editItemForm()
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
-    if (localStorage.getItem("menu").length > 0)
+    if (localStorage.getItem("menuMain").length > 0)
     {
-        menu = localStorage.getItem("menu");
+        menu = localStorage.getItem("menuMain");
+        menuArr = menu.split('*');
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            if (item != undefined && item != '')
+            {
+                addEditorItem(item[0], item[1], item[2], item[3]);
+            }
+        }
+    }
+
+    if (localStorage.getItem("menuApp").length > 0)
+    {
+        menu = localStorage.getItem("menuApp");
+        menuArr = menu.split('*');
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            if (item != undefined && item != '')
+            {
+                addEditorItem(item[0], item[1], item[2], item[3]);
+            }
+        }
+    }
+
+    if (localStorage.getItem("menuDrink").length > 0)
+    {
+        menu = localStorage.getItem("menuDrink");
+        menuArr = menu.split('*');
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            if (item != undefined && item != '')
+            {
+                addEditorItem(item[0], item[1], item[2], item[3]);
+            }
+        }
+    }
+
+    if (localStorage.getItem("menuDesert").length > 0)
+    {
+        menu = localStorage.getItem("menuDesert");
         menuArr = menu.split('*');
         for(let i = 0; i < menuArr.length; i++)
         {
@@ -428,36 +530,42 @@ function editItemForm()
 
 function addEditorItem(itemName, price, imgLink, itemInfo) //Puts the item in an editor format for the manager
 {
-    if (localStorage.getItem("menu").length > 0)
-    {
-        var menuRow = document.createElement("div")
-        menuRow.classList.add("edit-row")
-        var newItem = document.getElementsByClassName("formInputs")[0]
-        var menuRowContents = `
-            <div class = "smallWordDiv">
-                <h2>${itemName}</h2>
-                <img class="mini-Image" src="${imgLink}">
-                <br>
-                <p>${price}<p>
-                <br>
-                <p>${itemInfo}<p>
-            </div>
+    var menuRow = document.createElement("div")
+    menuRow.classList.add("edit-row")
+    var newItem = document.getElementsByClassName("formInputs")[0]
+    var menuRowContents = `
+        <div class = "smallWordDiv">
+            <h2>${itemName}</h2>
+            <img class="mini-Image" src="${imgLink}">
             <br>
-            <form onsubmit = "return false"><label>Item Name: </label>  <input id="newItemName" name="newItemName" type="text" placeholder="Item name...">
-            <br><br>
-            <label>Price: </label>  <input id="newItemPrice" name="newItemPrice" type="text" placeholder=${price}>
-            <br><br>
-            <label>Image Link: </label>  <input id="newItemLink" name="newItemLink" type="text" placeholder="Image Link...">
-            <br><br>
-            <label>Item Description: </label>  <input id="newItemDesc" name="newItemDesc" type="text" placeholder="Description...">
-            <br><br>
-            <button class="editButton">Save Changes</button></form>
-            <br><br>
-        `
-        menuRow.innerHTML = menuRowContents
-        newItem.append(menuRow)
-        menuRow.getElementsByClassName("editButton")[0].addEventListener('click', () => {editItem(itemName)})
-    }
+            <p>${price}<p>
+            <br>
+            <p>${itemInfo}<p>
+        </div>
+        <br>
+        <form onsubmit = "return false"><label>Item Name: </label>  <input id="newItemName" name="newItemName" type="text" placeholder="Item name...">
+        <br><br>
+        <label>Price: </label>  <input id="newItemPrice" name="newItemPrice" type="text" placeholder=${price}>
+        <br><br>
+        <label>Image Link: </label>  <input id="newItemLink" name="newItemLink" type="text" placeholder="Image Link...">
+        <br><br>
+        <label>Item Description: </label>  <input id="newItemDesc" name="newItemDesc" type="text" placeholder="Description...">
+        <br><br>
+        <label>What menu will it go in:</label>
+        <select id="menuSelect" name="menuSelect">
+        <option value="0">Main</option>
+        <option value="1">Appetizers</option>
+        <option value="2">Drinks</option>
+        <option value="3">Deserts</option>
+        </select>
+        <br><br>
+        <button class="editButton">Save Changes</button></form>
+        <br><br>
+    `
+    menuRow.innerHTML = menuRowContents
+    newItem.append(menuRow)
+    menuRow.getElementsByClassName("editButton")[0].addEventListener('click', () => {editItem(itemName)})
+    
 }
 
 function editItem(itemName) //Searches though the menu localstorage data too look at the item
@@ -559,9 +667,51 @@ function removeItemForm()
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
-    if (localStorage.getItem("menu").length > 0)
+    if (localStorage.getItem("menuMain").length > 0)
     {
-        menu = localStorage.getItem("menu");
+        menu = localStorage.getItem("menuMain");
+        menuArr = menu.split('*');
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            if (item != undefined && item != '')
+            {
+                addManagerItem(item[0], item[1], item[2], item[3]);
+            }
+        }
+    }
+
+    if (localStorage.getItem("menuApp").length > 0)
+    {
+        menu = localStorage.getItem("menuApp");
+        menuArr = menu.split('*');
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            if (item != undefined && item != '')
+            {
+                addManagerItem(item[0], item[1], item[2], item[3]);
+            }
+        }
+    }
+
+    if (localStorage.getItem("menuDrink").length > 0)
+    {
+        menu = localStorage.getItem("menuDrink");
+        menuArr = menu.split('*');
+        for(let i = 0; i < menuArr.length; i++)
+        {
+            item = menuArr[i].split("|");
+            if (item != undefined && item != '')
+            {
+                addManagerItem(item[0], item[1], item[2], item[3]);
+            }
+        }
+    }
+
+    if (localStorage.getItem("menuDesert").length > 0)
+    {
+        menu = localStorage.getItem("menuDesert");
         menuArr = menu.split('*');
         for(let i = 0; i < menuArr.length; i++)
         {
@@ -575,7 +725,7 @@ function removeItemForm()
 }
 
 //adds item to local storage
-function addItemSubmit()
+function addItemSubmit(menuNumb)
 {
     itemName = document.getElementById("newItemName").value;
     itemPrice = document.getElementById("newItemPrice").value;
@@ -605,10 +755,42 @@ function addItemSubmit()
     else
     {
         itemPrice = formatter.format(itemPrice);
-        menu = localStorage.getItem("menu");
-        menu += '*'+ itemName + '|' + itemPrice + '|'+ itemLink +'|' + itemDesc;
-        localStorage.setItem("menu", menu);
-        alert("New Item Added!");
+        if (menuNumb == 0)
+        {
+            menu = localStorage.getItem("menuMain");
+            menu += '*'+ itemName + '|' + itemPrice + '|'+ itemLink +'|' + itemDesc;
+            localStorage.setItem("menuMain", menu);
+            alert("New item added to main menu!");
+        }
+
+        else if (menuNumb == 1)
+        {
+            menu = localStorage.getItem("menuApp");
+            menu += '*'+ itemName + '|' + itemPrice + '|'+ itemLink +'|' + itemDesc;
+            localStorage.setItem("menuApp", menu);
+            alert("New item added to appetizers!");
+        }
+
+        else if (menuNumb == 2)
+        {
+            menu = localStorage.getItem("menuDrink");
+            menu += '*'+ itemName + '|' + itemPrice + '|'+ itemLink +'|' + itemDesc;
+            localStorage.setItem("menuDrink", menu);
+            alert("New item added to drinks!");
+        }
+
+        else if (menuNumb == 3)
+        {
+            menu = localStorage.getItem("menuDesert");
+            menu += '*'+ itemName + '|' + itemPrice + '|'+ itemLink +'|' + itemDesc;
+            localStorage.setItem("menuDesert", menu);
+            alert("New item added to deserts!");
+        }
+
+        else
+        {
+            alert("Something went horribly wrong to get this.")
+        }
     }
     
 }
@@ -622,7 +804,7 @@ function isImage(url) {
 //displays items like showMenu() but is different because it has a remove button not add to cart
 function addManagerItem(itemName, price, imgLink, itemInfo)
 {
-    if (localStorage.getItem("menu").length > 0)
+    if (localStorage.getItem("menuMain").length > 0)
     {
         var menuRow = document.createElement("div");
         menuRow.classList.add("menu-row");

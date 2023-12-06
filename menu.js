@@ -698,6 +698,9 @@ function removeManagerItem(itemName)
 
 function isNumberValid(imei)//luhn's algorithm
 {
+    if (!imei) return false;
+    if(imei.length < 13 || imei.length > 19) return false;
+
     return /^\d+$/.test( imei ) && ( imei.split( '' ).reverse().reduce( function( sum, d, n ){ return +sum + ( ( n%2 ) ? [ 0,2,4,6,8,1,3,5,7,9 ][ +d ] : +d ); }, 0) ) % 10 == 0;
 
 //    valid values to use

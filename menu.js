@@ -676,7 +676,7 @@ function removeItemForm()
             item = menuArr[i].split("|");
             if (item != undefined && item != '')
             {
-                addManagerItem(item[0], item[1], item[2], item[3]);
+                addManagerItem(item[0], item[1], item[2], item[3], "menuMain");
             }
         }
     }
@@ -690,7 +690,7 @@ function removeItemForm()
             item = menuArr[i].split("|");
             if (item != undefined && item != '')
             {
-                addManagerItem(item[0], item[1], item[2], item[3]);
+                addManagerItem(item[0], item[1], item[2], item[3], "menuApp");
             }
         }
     }
@@ -704,7 +704,7 @@ function removeItemForm()
             item = menuArr[i].split("|");
             if (item != undefined && item != '')
             {
-                addManagerItem(item[0], item[1], item[2], item[3]);
+                addManagerItem(item[0], item[1], item[2], item[3], "menuDrink");
             }
         }
     }
@@ -718,7 +718,7 @@ function removeItemForm()
             item = menuArr[i].split("|");
             if (item != undefined && item != '')
             {
-                addManagerItem(item[0], item[1], item[2], item[3]);
+                addManagerItem(item[0], item[1], item[2], item[3], "menuDesert");
             }
         }
     }
@@ -802,7 +802,7 @@ function isImage(url) {
   
   
 //displays items like showMenu() but is different because it has a remove button not add to cart
-function addManagerItem(itemName, price, imgLink, itemInfo)
+function addManagerItem(itemName, price, imgLink, itemInfo, divName)
 {
     if (localStorage.getItem("menuMain").length > 0)
     {
@@ -826,19 +826,19 @@ function addManagerItem(itemName, price, imgLink, itemInfo)
         newItem.append(menuRow);
         
         //add event listener to all remove buttons that calls removeManagerItem
-        menuRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeManagerItem(itemName)});
+        menuRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeManagerItem(itemName, divName)});
     }
 }
 
 //removes element from page and local storage
-function removeManagerItem(itemName)
+function removeManagerItem(itemName, divName)
 {
     let setForm = document.getElementsByClassName("formInputs")[0];
     setForm.innerHTML = '';
     let currentItem = "";
     let finalString = "";
 
-    menu = localStorage.getItem("menu");
+    menu = localStorage.getItem(divName);
     menuArr = menu.split('*');
     for(let i = 0; i < menuArr.length; i++)
     {
@@ -860,22 +860,10 @@ function removeManagerItem(itemName)
     }
 
     // SET MENU IN LOCALSTORAGE
-    localStorage.setItem("menu", finalString)
+    localStorage.setItem(divName, finalString)
     
     //resets page html so that the removed element is removed
-    setForm = document.getElementsByClassName("formInputs")[0];
-    setForm.innerHTML = '';
-    if (localStorage.getItem("menu").length > 0)
-    {
-        menu = localStorage.getItem("menu");
-        menuArr = menu.split('*');
-
-        for(let i = 0; i < menuArr.length; i++)
-        {
-            item = menuArr[i].split("|");
-            addManagerItem(item[0], item[1], item[2], item[3]);
-        }
-    }
+    removeItemForm()
 }
 
 function isNumberValid(imei)//luhn's algorithm

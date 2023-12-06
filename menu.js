@@ -138,12 +138,12 @@ if(document.getElementsByClassName("receipt")[0])
 
     //set purchase history for this account with time
     var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var date = today.getDate() + '-' + (today.getMonth()+1) + '-' + today.getFullYear()
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date +' '+ time;
+    var dateTime = date +' @ '+ time;
 
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let dayOfWeek = days[today.getDay()]
+    let dayOfWeek = days[today.getDay()];
     
     //update time ready
     let minutes = itemCount * 15; //get total minutes
@@ -156,10 +156,16 @@ if(document.getElementsByClassName("receipt")[0])
     let finalMinutes = today.getMinutes() + minutes;
 
     //make sure minutes dont overflow the next hour
-    if(minutes > 59)
+    if(finalMinutes > 59)
     {
         finalhHours++;
         finalMinutes -= 60;
+    }
+
+    if(finalhHours > 23)
+    {
+        dayOfWeek = days[today.getDay() + 1];
+        finalhHours = 0;
     }
 
     let estimatedReady = dayOfWeek + " @ " + finalhHours + ":" + finalMinutes;
@@ -297,27 +303,42 @@ function purchaseClicked() // remove all items from cart and stores them into lo
     {
         if (document.getElementById("receiptName").value != '' && document.getElementById("receiptName").value != undefined)
         {
-            localStorage.setItem("recentPayment", document.getElementById("payMethod").value)
-            localStorage.setItem("recentCustomer", document.getElementById("receiptName").value)
-            localStorage.setItem("recentTip", document.getElementById("tip").value)
-            alert("Your order has been placed");
-            var cartItems = document.getElementsByClassName("cart-items")[0];
-            var itemsBought = ""; //a string wih values seperated by | and items seperated by *
-            while (cartItems.hasChildNodes())
+            if(document.getElementById("cardNumber").value != '')
             {
-                count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
-                item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
-                price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
-                cartImg = cartItems.getElementsByClassName("cart-item-image")[0].src;
-                itemsBought += item + "|" + count + "|" + price + "|" + cartImg + "*";
-                cartItems.removeChild(cartItems.firstChild);
-            }
+                if(isNumberValid(document.getElementById("cardNumber").value.replace(/\D/g,"")))//send function the cc number input minus all non numerical inputs
+                {
 
-            localStorage.setItem("currentReciept", itemsBought);
-            localStorage.setItem("duplicatorPreventor", "0");
-            updatePrice();
-            
-            window.location.href = "reciept.html";
+                    localStorage.setItem("recentPayment", document.getElementById("payMethod").value)
+                    localStorage.setItem("recentCustomer", document.getElementById("receiptName").value)
+                    localStorage.setItem("recentTip", document.getElementById("tip").value)
+                    alert("Your order has been placed");
+                    var cartItems = document.getElementsByClassName("cart-items")[0];
+                    var itemsBought = ""; //a string wih values seperated by | and items seperated by *
+                    while (cartItems.hasChildNodes())
+                    {
+                        count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
+                        item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
+                        price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
+                        cartImg = cartItems.getElementsByClassName("cart-item-image")[0].src;
+                        itemsBought += item + "|" + count + "|" + price + "|" + cartImg + "*";
+                        cartItems.removeChild(cartItems.firstChild);
+                    }
+
+                    localStorage.setItem("currentReciept", itemsBought);
+                    localStorage.setItem("duplicatorPreventor", "0");
+                    updatePrice();
+                    
+                    window.location.href = "reciept.html";
+                }
+                else
+                {
+                    alert("Card Number not valid")
+                }
+            }
+            else
+            {
+                alert("Please enter card number")
+            }
         }
 
         else
@@ -673,4 +694,17 @@ function removeManagerItem(itemName)
             addManagerItem(item[0], item[1], item[2], item[3]);
         }
     }
+}
+
+function isNumberValid(imei)//luhn's algorithm
+{
+    return /^\d+$/.test( imei ) && ( imei.split( '' ).reverse().reduce( function( sum, d, n ){ return +sum + ( ( n%2 ) ? [ 0,2,4,6,8,1,3,5,7,9 ][ +d ] : +d ); }, 0) ) % 10 == 0;
+
+//    valid values to use
+//     4003600000000014dsfsadf
+//     378282246310005
+//     371449635398431
+//     378734493671000
+//     4222222222222
+//     6331101999990016
 }

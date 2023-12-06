@@ -19,9 +19,9 @@ if(!localStorage.getItem("DefaultMenu"))
 {
     localStorage.setItem("DefaultMenu", 1);
     localStorage.setItem("menuMain", "Veggie Cream Soup|$3.00|images/food/Creamy Soup.JPG|This creamy soup showcases the sweetness of vegetables in a veritable taste explosion.*Monster Rice Balls|$3.50|images/food/BotW Monster Rice Ball.jpeg|Rice balls flavored with monster extract. Their unique aroma is not for everyone.*Monster Lasagna|$6.00|images/food/monsterLasagna_01.jpg|A deviously flavored dish with a main course of monster meat. It's harsh ingredients arn't for the faint of stomach but it's alluring smell and taste is worth every bite.*Firecap Soup|$3.50|images/food/01_FirecapSoup.jpg|Boiled and stirred to perfection, firecap soup will make the coldest days seem warm with it's iconic flaming hot sensation.*Mango Rice|$2.75|images/food/mangoRice_01.jpg|Bland and sweet, a perfect mix to make your taste buds go wild. With even a mango topping there is greatness in every bite.");
-    localStorage.setItem("menuApp", "Cheesy Tomatoes|$2.00|images/food/cheesyTomato_01.png|A simple dish of Hylian tomato topped with delicious Hateno cheese. A perfect snack.")
-    localStorage.setItem("menuDrink", "TestMeal|$3.69|images/wood.jpg|Wood")
-    localStorage.setItem("menuDesert", "Nut Cake|$4.00|images/food/Nut Cake.jpeg|Forest nuts give this cake a pleasant texture and a simple, understated sweetness.*Mud Cookies|$2.00|images/food/mudcookie_08_copy.jpg|Despite it's inappetizing appearance, consuming it is known to give one a burst of energy and a wonderful sweet taste that lasts for hours.")
+    localStorage.setItem("menuApp","Cheesy Tomatoes|$2.00|images/food/cheesyTomato_01.png|A simple dish of Hylian tomato topped with delicious Hateno cheese. A perfect snack.*Baked Potato Chunks|$2.99|images/food/chunks-baked-potato-starfield.jpg|3 Cube Shaped Baked Potato Chunks")
+    localStorage.setItem("menuDrink","Chamomile Honey Medicine Drink|$1.99|images/food/chamomile-honey-medicine-drink.jpg|A comforting blend with a touch of warming spices. Every hero deserves a moment of respite and recovery.*Dishonored Gin|$4.50|images/food/gin-drink.jpg|Gin with a pinch of cane suger and a handful of nutmeg.")
+    localStorage.setItem("menuDesert","Nut Cake|$4.00|images/food/Nut Cake.jpeg|Forest nuts give this cake a pleasant texture and a simple, understated sweetness.*Mud Cookies|$2.00|images/food/mudcookie_08_copy.jpg|Despite it's inappetizing appearance, consuming it is known to give one a burst of energy and a wonderful sweet taste that lasts for hours.*Cheesecake Chunks|$4.00|images/food/starfield-cake.jpg|3 Cube shaped Cheesecake Chunks*Creme Filled Cake|$5.99|images/food/creme-filled-cake.jpg|It is perfect for a fluffy, extremely delicious, sweet snack. Although they only restore a small amount of life, you can be sure that even Splicers will fight for a bite of this specialty.*Pumpkin Pie Frozen Yogurt|$2.50|images/food/frozen-yogurt.jpg|Pumpkin flavoured frozen yogurt with punpkin spice sprinkled on top.")
     localStorage.setItem("orderNum", "0");
 }
 
@@ -886,7 +886,7 @@ function isNumberValid(imei)//luhn's algorithm
     return /^\d+$/.test( imei ) && ( imei.split( '' ).reverse().reduce( function( sum, d, n ){ return +sum + ( ( n%2 ) ? [ 0,2,4,6,8,1,3,5,7,9 ][ +d ] : +d ); }, 0) ) % 10 == 0;
 
 //    valid values to use
-//     4003600000000014dsfsadf
+//     4003600000000014
 //     378282246310005
 //     371449635398431
 //     378734493671000

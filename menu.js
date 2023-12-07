@@ -211,7 +211,12 @@ if(document.getElementsByClassName("receipt")[0])
 //displays the items in the local storage menu in the menu page and edi menu page
 function showMenu()
 {
-    menuHyperlinks("hyper0")
+    if (menuHyperlinks("hyper0", "menuMain"))
+    {
+        menuIsEmpty()
+    }
+
+    menuHyperlinks("hyper0", "menuMain")
 
     menu = localStorage.getItem("menuMain");
     menuArr = menu.split('*');
@@ -221,7 +226,7 @@ function showMenu()
         addItem(item[0], item[1], item[2], item[3], "shop-items-0");
     }
 
-    menuHyperlinks("hyper1")
+    menuHyperlinks("hyper1", "menuApp")
 
     menu = localStorage.getItem("menuApp");
     menuArr = menu.split('*');
@@ -231,7 +236,7 @@ function showMenu()
         addItem(item[0], item[1], item[2], item[3], "shop-items-1");
     }
 
-    menuHyperlinks("hyper2")
+    menuHyperlinks("hyper2", "menuDrink")
 
     menu = localStorage.getItem("menuDrink");
     menuArr = menu.split('*');
@@ -241,7 +246,7 @@ function showMenu()
         addItem(item[0], item[1], item[2], item[3], "shop-items-2");
     }
 
-    menuHyperlinks("hyper3")
+    menuHyperlinks("hyper3", "menuDesert")
 
     menu = localStorage.getItem("menuDesert");
     menuArr = menu.split('*');
@@ -252,19 +257,59 @@ function showMenu()
     }
 }
 
-function menuHyperlinks(divName)
+function menuHyperlinks(divName, menuName) // Makes a hyperlink row and links in the specified divName
+{
+    if (localStorage.getItem("menuMain").length == 0 && localStorage.getItem("menuApp").length == 0 && localStorage.getItem("menuDrink").length == 0 && localStorage.getItem("menuDesert").length == 0)
+    {
+        return (true)
+    }
+    
+    else if (localStorage.getItem(menuName).length > 0)
+    {
+        var hyperlinkRow = document.createElement("div")
+        hyperlinkRow.classList.add("hyperlink-row")
+        var newItem = document.getElementById(divName)
+        var hyperlinkRowContents = `<div><p>`;
+        
+        if (localStorage.getItem("menuMain").length > 0)
+        {
+            hyperlinkRowContents += "<a href='#hyper0'>Main Menu</a>"
+        }
+
+        if (localStorage.getItem("menuApp").length > 0)
+        {
+            hyperlinkRowContents += "<a href='#hyper1'>Appetizers</a>"
+        }
+
+        if (localStorage.getItem("menuDrink").length > 0)
+        {
+            hyperlinkRowContents += "<a href='#hyper2'>Drinks</a>"
+        }
+
+        if (localStorage.getItem("menuDesert").length > 0)
+        {
+            hyperlinkRowContents += "<a href='#hyper3'>Deserts</a>"
+        }
+
+        hyperlinkRowContents += "<a href='#hrefLink'>Cart</a></p><br><hr></div>"
+        hyperlinkRow.innerHTML = hyperlinkRowContents;
+        newItem.append(hyperlinkRow);
+    }
+}
+
+function menuIsEmpty() // Appends a special message to the menu, only called if nothing is in all of the menus
 {
     var hyperlinkRow = document.createElement("div")
     hyperlinkRow.classList.add("hyperlink-row")
-    var newItem = document.getElementById(divName)
-    var hyperlinkRowContents = `
-    <div class="">
-        <p><a href="#hyper0">Main Menu</a><a href="#hyper1">Appetizers</a><a href="#hyper2">Drinks</a><a href="#hyper3">Deserts</a><a href="#hrefLink">Cart</a></p>
-        <br>
-        <hr>
-    </div>
-    `;
-    
+    var newItem = document.getElementById("hyper0")
+    var hyperlinkRowContents = `<div><p>`;
+    hyperlinkRowContents += "Uh oh! It appears nothing is available at the moment. Please come back later."
+    hyperlinkRowContents += "</p><br></div>"
+    document.getElementsByClassName("container")[0].style.backgroundImage = 'url("images/fallout4-please-stand-by.gif")'
+    document.getElementsByClassName("container")[0].style.backgroundSize = 'cover'
+    document.getElementsByClassName("container")[0].style.backgroundRepeat = 'no-repeat'
+    document.getElementsByClassName("container")[0].style.height = "500px"
+    document.getElementsByClassName("container")[0].style.color = "white"
     hyperlinkRow.innerHTML = hyperlinkRowContents;
     newItem.append(hyperlinkRow);
 }

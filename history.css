@@ -11,6 +11,11 @@ html, body
     overflow-x: hidden;
 }
 
+button:hover
+{
+    cursor: pointer;
+}
+
 .header
 {
     background-image: url(images/minecraft.jpg);

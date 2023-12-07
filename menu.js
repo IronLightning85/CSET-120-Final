@@ -272,31 +272,28 @@ function menuHyperlinks(divName)
 //called by showMenu function for each item that needs to be displayed. It displays a single item with its name, image, price, and item info
 function addItem(itemName, price, imgLink, itemInfo, divName) // FIX TO NOT PUT UNDEFINED
 {
-    if (localStorage.getItem("menuMain").length > 0)
+    if (item != undefined && item != '')
     {
-        if (item != undefined && item != '')
-        {
-            var menuRow = document.createElement("div")
-            menuRow.classList.add("menu-row")
-            var newItem = document.getElementsByClassName(divName)[0]
-            var menuRowContents = `
-                <div class="shop-item">
-                    <span class="shop-item-title">${itemName}</span>
-                    <img class="shop-item-image" src="${imgLink}">
-                    <div class="shop-item-details">
-                        <span class="shop-item-price">${price}</span>
-                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
-                    </div>
-                    <div class="shop-item-details2">
-                        <p class="shop-item-info">${itemInfo}</p>
-                    </div>
+        var menuRow = document.createElement("div")
+        menuRow.classList.add("menu-row")
+        var newItem = document.getElementsByClassName(divName)[0]
+        var menuRowContents = `
+            <div class="shop-item">
+                <span class="shop-item-title">${itemName}</span>
+                <img class="shop-item-image" src="${imgLink}">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">${price}</span>
+                    <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
                 </div>
-            `;
-            
-            menuRow.innerHTML = menuRowContents;
-            newItem.append(menuRow);
-            menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)});
-        }
+                <div class="shop-item-details2">
+                    <p class="shop-item-info">${itemInfo}</p>
+                </div>
+            </div>
+        `;
+        
+        menuRow.innerHTML = menuRowContents;
+        newItem.append(menuRow);
+        menuRow.getElementsByClassName("btn-primary")[0].addEventListener('click', () => {addToCart(itemName, price, imgLink)});
     }
 }
 
@@ -804,30 +801,27 @@ function isImage(url) {
 //displays items like showMenu() but is different because it has a remove button not add to cart
 function addManagerItem(itemName, price, imgLink, itemInfo, divName)
 {
-    if (localStorage.getItem("menuMain").length > 0)
-    {
-        var menuRow = document.createElement("div");
-        menuRow.classList.add("menu-row");
-        var newItem = document.getElementsByClassName("formInputs")[0];
-        var menuRowContents = `
-            <div class="shop-item">
-                <span class="shop-item-title">${itemName}</span>
-                <img class="shop-item-image" src="${imgLink}">
-                <div class="shop-item-details">
-                    <span class="shop-item-price">${price}</span>
-                    <button class="btn btn-danger" type="button">REMOVE</button>
-                </div>
-                <div class="shop-item-details2">
-                    <p class="shop-item-info">${itemInfo}</p>
-                </div>
+    var menuRow = document.createElement("div");
+    menuRow.classList.add("menu-row");
+    var newItem = document.getElementsByClassName("formInputs")[0];
+    var menuRowContents = `
+        <div class="shop-item">
+            <span class="shop-item-title">${itemName}</span>
+            <img class="shop-item-image" src="${imgLink}">
+            <div class="shop-item-details">
+                <span class="shop-item-price">${price}</span>
+                <button class="btn btn-danger" type="button">REMOVE</button>
             </div>
-        `;
-        menuRow.innerHTML = menuRowContents;
-        newItem.append(menuRow);
-        
-        //add event listener to all remove buttons that calls removeManagerItem
-        menuRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeManagerItem(itemName, divName)});
-    }
+            <div class="shop-item-details2">
+                <p class="shop-item-info">${itemInfo}</p>
+            </div>
+        </div>
+    `;
+    menuRow.innerHTML = menuRowContents;
+    newItem.append(menuRow);
+    
+    //add event listener to all remove buttons that calls removeManagerItem
+    menuRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeManagerItem(itemName, divName)});
 }
 
 //removes element from page and local storage

@@ -211,7 +211,7 @@ if(document.getElementsByClassName("receipt")[0])
 //displays the items in the local storage menu in the menu page and edi menu page
 function showMenu()
 {
-    if (menuHyperlinks("hyper0", "menuMain"))
+    if (localStorage.getItem("menuMain").length == 0 && localStorage.getItem("menuApp").length == 0 && localStorage.getItem("menuDrink").length == 0 && localStorage.getItem("menuDesert").length == 0)
     {
         menuIsEmpty()
     }
@@ -259,12 +259,8 @@ function showMenu()
 
 function menuHyperlinks(divName, menuName) // Makes a hyperlink row and links in the specified divName
 {
-    if (localStorage.getItem("menuMain").length == 0 && localStorage.getItem("menuApp").length == 0 && localStorage.getItem("menuDrink").length == 0 && localStorage.getItem("menuDesert").length == 0)
-    {
-        return (true)
-    }
     
-    else if (localStorage.getItem(menuName).length > 0)
+    if (localStorage.getItem(menuName).length > 0)
     {
         var hyperlinkRow = document.createElement("div")
         hyperlinkRow.classList.add("hyperlink-row")

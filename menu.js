@@ -25,6 +25,14 @@ if(!localStorage.getItem("DefaultMenu"))
     localStorage.setItem("orderNum", "0");
 }
 
+function restoreMenu()
+{
+    localStorage.setItem("menuMain", "Veggie Cream Soup|$3.00|images/food/Creamy Soup.JPG|This creamy soup showcases the sweetness of vegetables in a veritable taste explosion.*Monster Rice Balls|$3.50|images/food/BotW Monster Rice Ball.jpeg|Rice balls flavored with monster extract. Their unique aroma is not for everyone.*Monster Lasagna|$6.00|images/food/monsterLasagna_01.jpg|A deviously flavored dish with a main course of monster meat. It's harsh ingredients arn't for the faint of stomach but it's alluring smell and taste is worth every bite.*Firecap Soup|$3.50|images/food/01_FirecapSoup.jpg|Boiled and stirred to perfection, firecap soup will make the coldest days seem warm with it's iconic flaming hot sensation.*Mango Rice|$2.75|images/food/mangoRice_01.jpg|Bland and sweet, a perfect mix to make your taste buds go wild. With even a mango topping there is greatness in every bite.");
+    localStorage.setItem("menuApp","Cheesy Tomatoes|$2.00|images/food/cheesyTomato_01.png|A simple dish of Hylian tomato topped with delicious Hateno cheese. A perfect snack.*Baked Potato Chunks|$2.99|images/food/chunks-baked-potato-starfield.jpg|3 Cube Shaped Baked Potato Chunks*ButterBun|$1.75|images/food/butterBun.jpg|Baked up a dozen at a time in warm ovens throughout the heartlands.*Guacamole|$1.75|images/food/guacamole.png|A classic appetizer for anyone at the table! This guacamole has been given a special zing to enhance it's flavor and feeling, making it better than just normal guacamole!*Honey Nuggets|$3.25|images/food/honeyNuggets.jpg|The sweet taste of honey, followed by the crunch and smoothe taste of the chicken. Honey nuggets are a popular favorite for anyone who likes the sweet and savory taste.")
+    localStorage.setItem("menuDrink","Chamomile Honey Medicine Drink|$1.99|images/food/chamomile-honey-medicine-drink.jpg|A comforting blend with a touch of warming spices. Every hero deserves a moment of respite and recovery.*Dishonored Gin|$4.50|images/food/gin-drink.jpg|Gin with a pinch of cane suger and a handful of nutmeg.*Nuka Cola|$1.99|images/food/nuka-cola.webp|A thirst quenching cola from the wasteland.*Slurp Juice|$3.50|images/food/fortnite.jpg|An unknown liquid that enhances your senses.*Scumm Bar Grogg|$4.99|images/food/grog.webp|A potent grog causing almost instant blackouts.")
+    localStorage.setItem("menuDesert","Nut Cake|$4.00|images/food/Nut Cake.jpeg|Forest nuts give this cake a pleasant texture and a simple, understated sweetness.*Mud Cookies|$2.00|images/food/mudcookie_08_copy.jpg|Despite it's inappetizing appearance, consuming it is known to give one a burst of energy and a wonderful sweet taste that lasts for hours.*Cheesecake Chunks|$4.00|images/food/starfield-cake.jpg|3 Cube shaped Cheesecake Chunks*Creme Filled Cake|$5.99|images/food/creme-filled-cake.jpg|It is perfect for a fluffy, extremely delicious, sweet snack. Although they only restore a small amount of life, you can be sure that even Splicers will fight for a bite of this specialty.*Pumpkin Pie Frozen Yogurt|$2.50|images/food/frozen-yogurt.jpg|Pumpkin flavoured frozen yogurt with punpkin spice sprinkled on top.")
+}
+
 // displays manager button
 if(localStorage.getItem("isManager") == "true")
 {
@@ -59,7 +67,7 @@ if(document.getElementsByClassName("receipt")[0])
     });
 
     var qrcode = new QRCode(document.getElementById("qrcode"), {
-        text: "https://cataas.com/cat/gif"+receiptQRID,
+        text: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"+receiptQRID,
         colorDark : "#000000",
         colorLight : "#ffffff",
         width : 100,
@@ -140,8 +148,22 @@ if(document.getElementsByClassName("receipt")[0])
     //set purchase history for this account with time
     var today = new Date();
     var date = today.getDate() + '-' + (today.getMonth()+1) + '-' + today.getFullYear()
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date +' @ '+ time;
+    var time = today.getHours() + ":" + today.getMinutes();
+
+    //split time, turn to string and add a zero to if it is length on 1
+    var newTime = time.split(":")
+    if(newTime[0].length == 1)
+    {
+        newTime[0] = "0" + String(newTime[0]);
+    }
+    if(newTime[1].length == 1)
+    {
+        newTime[1] = String(newTime[1]) + "0";
+    }
+
+    let finalTime = newTime[0] + ":" + newTime[1];
+
+    var dateTime = date +' @ '+ finalTime;
 
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let dayOfWeek = days[today.getDay()];
@@ -172,10 +194,13 @@ if(document.getElementsByClassName("receipt")[0])
     let estimatedReady = dayOfWeek + " @ " + finalhHours + ":" + finalMinutes;
 
 
+    //append data to receipt
     document.getElementById("date").innerHTML = dateTime;
     document.getElementById("location").innerHTML = buyer;
     document.getElementById("Order #").innerHTML = orderNumber;
     document.getElementsByClassName("eta")[0].innerHTML = estimatedReady;
+
+    //add data to history
     values.unshift(dateTime);
     values.toString();
 

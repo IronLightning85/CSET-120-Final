@@ -416,41 +416,72 @@ function purchaseClicked() // remove all items from cart and stores them into lo
     {
         if (document.getElementById("receiptName").value != '' && document.getElementById("receiptName").value != undefined)
         {
-            if(document.getElementById("cardNumber").value != '')
+            if (document.getElementById("payMethod").value == "Cash")
             {
-                if(isNumberValid(document.getElementById("cardNumber").value.replace(/\D/g,"")))//send function the cc number input minus all non numerical inputs
+                localStorage.setItem("recentPayment", document.getElementById("payMethod").value)
+                localStorage.setItem("recentCustomer", document.getElementById("receiptName").value)
+                localStorage.setItem("recentTip", document.getElementById("tip").value)
+                alert("Your order has been placed");
+                var cartItems = document.getElementsByClassName("cart-items")[0];
+                var itemsBought = ""; //a string wih values seperated by | and items seperated by *
+                while (cartItems.hasChildNodes())
                 {
-
-                    localStorage.setItem("recentPayment", document.getElementById("payMethod").value)
-                    localStorage.setItem("recentCustomer", document.getElementById("receiptName").value)
-                    localStorage.setItem("recentTip", document.getElementById("tip").value)
-                    alert("Your order has been placed");
-                    var cartItems = document.getElementsByClassName("cart-items")[0];
-                    var itemsBought = ""; //a string wih values seperated by | and items seperated by *
-                    while (cartItems.hasChildNodes())
-                    {
-                        count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
-                        item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
-                        price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
-                        cartImg = cartItems.getElementsByClassName("cart-item-image")[0].src;
-                        itemsBought += item + "|" + count + "|" + price + "|" + cartImg + "*";
-                        cartItems.removeChild(cartItems.firstChild);
-                    }
-
-                    localStorage.setItem("currentReciept", itemsBought);
-                    localStorage.setItem("duplicatorPreventor", "0");
-                    updatePrice();
-                    
-                    window.location.href = "reciept.html";
+                    count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
+                    item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
+                    price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
+                    cartImg = cartItems.getElementsByClassName("cart-item-image")[0].src;
+                    itemsBought += item + "|" + count + "|" + price + "|" + cartImg + "*";
+                    cartItems.removeChild(cartItems.firstChild);
                 }
-                else
-                {
-                    alert("Card Number not valid")
-                }
+
+                localStorage.setItem("currentReciept", itemsBought);
+                localStorage.setItem("duplicatorPreventor", "0");
+                updatePrice();
+                
+                window.location.href = "reciept.html";
             }
+
             else
             {
-                alert("Please enter card number")
+
+                if(document.getElementById("cardNumber").value != '')
+                {
+                    if(isNumberValid(document.getElementById("cardNumber").value.replace(/\D/g,"")))//send function the cc number input minus all non numerical inputs
+                    {
+
+                        localStorage.setItem("recentPayment", document.getElementById("payMethod").value)
+                        localStorage.setItem("recentCustomer", document.getElementById("receiptName").value)
+                        localStorage.setItem("recentTip", document.getElementById("tip").value)
+                        alert("Your order has been placed");
+                        var cartItems = document.getElementsByClassName("cart-items")[0];
+                        var itemsBought = ""; //a string wih values seperated by | and items seperated by *
+                        while (cartItems.hasChildNodes())
+                        {
+                            count = cartItems.getElementsByClassName("cart-quantity-input")[0].value;
+                            item = cartItems.getElementsByClassName("cart-item-title")[0].innerHTML;
+                            price = cartItems.getElementsByClassName("cart-price")[0].innerHTML;
+                            cartImg = cartItems.getElementsByClassName("cart-item-image")[0].src;
+                            itemsBought += item + "|" + count + "|" + price + "|" + cartImg + "*";
+                            cartItems.removeChild(cartItems.firstChild);
+                        }
+
+                        localStorage.setItem("currentReciept", itemsBought);
+                        localStorage.setItem("duplicatorPreventor", "0");
+                        updatePrice();
+                        
+                        window.location.href = "reciept.html";
+                    }
+                    else
+                    {
+                        alert("Card Number not valid")
+                    }
+                }
+                
+                else
+                {
+                    alert("Please enter card number")
+                }
+
             }
         }
 
@@ -527,6 +558,88 @@ function addItemForm()
     <button>Submit</button></form>
     `;
     setForm.getElementsByTagName("button")[0].addEventListener('click', () => {addItemSubmit(document.getElementsByTagName("select")[0].value)})
+}
+
+function menuEditItem(itemName, menuSplit, menuName) // Checks each editor element and changes their values of that specific button was hit
+{
+    let currentElement = ''
+    let finalMenu = ''
+    let newName = ''
+    let newPrice = ''
+    let newLink = ''
+    let newDesc = ''
+
+    for (let i = 0; i < document.getElementsByClassName("edit-row").length; i++)
+    {
+        currentElement = document.getElementsByClassName("edit-row")[i]
+        //console.log(currentElement, currentElement.getElementsByTagName("h2")[0].innerHTML)
+
+        if (itemName == currentElement.getElementsByTagName("h2")[0].innerHTML)
+        {
+            newName = currentElement.getElementsByTagName("input")[0].value
+            newPrice = currentElement.getElementsByTagName("input")[1].value
+            newLink = currentElement.getElementsByTagName("input")[2].value
+            newDesc = currentElement.getElementsByTagName("input")[3].value
+            console.log ("newName:", newName, "newPrice:", newPrice, "newLink:", newLink, "newDesc:", newDesc)
+        }
+    }
+
+    for (let i = 0; i < menuSplit.length; i++)
+    {
+
+        if (menuSplit[i].split("|")[0] == itemName)
+        {
+            
+            if (newName != '')
+            {
+                finalMenu += newName + "|"
+            }
+
+            else
+            {
+                finalMenu += menuSplit[i].split("|")[0] + "|"
+            }
+
+            if (newPrice != '' && newPrice > 0 && newPrice < 1000)
+            {
+                finalMenu += formatter.format(newPrice) + "|"
+            }
+
+            else
+            {
+                finalMenu += menuSplit[i].split("|")[1] + "|"
+            }
+
+            if (newLink != '')
+            {
+                finalMenu += newLink + "|"
+            }
+
+            else
+            {
+                finalMenu += menuSplit[i].split("|")[2] + "|"
+            }
+
+            if (newDesc != '')
+            {
+                finalMenu += newDesc + "|"
+            }
+
+            else
+            {
+                finalMenu += menuSplit[i].split("|")[3] + "*"
+            }
+        }
+
+        else
+        {
+            finalMenu += menuSplit[i].split("|")[0] + "|" + menuSplit[i].split("|")[1] + "|" + menuSplit[i].split("|")[2] + "|" + menuSplit[i].split("|")[3] + "*"
+        }
+        
+    }
+
+    finalMenu = finalMenu.replace(/.$/,"")
+    localStorage.setItem(menuName, finalMenu)
 }
 
 //changes innerhtml to edit item
@@ -625,95 +738,42 @@ function addEditorItem(itemName, price, imgLink, itemInfo) //Puts the item in an
 
 function editItem(itemName) //Searches though the menu localstorage data too look at the item
 {
-    if (localStorage.getItem("menu").length > 0)
+    if (localStorage.getItem("menuMain").length > 0)
     {
-        menu = localStorage.getItem("menu")
+        menu = localStorage.getItem("menuMain")
         menuSplit = menu.split('*')
         //console.log(menuArr, itemName)
 
-        menuEditItem(itemName, menuSplit)
+        menuEditItem(itemName, menuSplit, "menuMain")
     }
-}
 
-function menuEditItem(itemName, menuSplit) // Checks each editor element and changes their values of that specific button was hit
-{
-    let currentElement = ''
-    let finalMenu = ''
-    let newName = ''
-    let newPrice = ''
-    let newLink = ''
-    let newDesc = ''
-
-    for (let i = 0; i < document.getElementsByClassName("edit-row").length; i++)
+    if (localStorage.getItem("menuApp").length > 0)
     {
-        currentElement = document.getElementsByClassName("edit-row")[i]
-        //console.log(currentElement, currentElement.getElementsByTagName("h2")[0].innerHTML)
+        menu = localStorage.getItem("menuApp")
+        menuSplit = menu.split('*')
+        //console.log(menuArr, itemName)
 
-        if (itemName == currentElement.getElementsByTagName("h2")[0].innerHTML)
-        {
-            newName = currentElement.getElementsByTagName("input")[0].value
-            newPrice = currentElement.getElementsByTagName("input")[1].value
-            newLink = currentElement.getElementsByTagName("input")[2].value
-            newDesc = currentElement.getElementsByTagName("input")[3].value
-        }
+        menuEditItem(itemName, menuSplit, "menuApp")
     }
 
-    for (let i = 0; i < menuSplit.length; i++)
+    if (localStorage.getItem("menuDrink").length > 0)
     {
+        menu = localStorage.getItem("menuDrink")
+        menuSplit = menu.split('*')
+        //console.log(menuArr, itemName)
 
-        if (menuSplit[i].split("|")[0] == itemName)
-        {
-            
-            if (newName != '')
-            {
-                finalMenu += newName + "|"
-            }
-
-            else
-            {
-                finalMenu += menuSplit[i].split("|")[0] + "|"
-            }
-
-            if (newPrice != '' && newPrice > 0 && newPrice < 1000)
-            {
-                finalMenu += formatter.format(newPrice) + "|"
-            }
-
-            else
-            {
-                finalMenu += menuSplit[i].split("|")[1] + "|"
-            }
-
-            if (newLink != '')
-            {
-                finalMenu += newLink + "|"
-            }
-
-            else
-            {
-                finalMenu += menuSplit[i].split("|")[2] + "|"
-            }
-
-            if (newDesc != '')
-            {
-                finalMenu += newDesc + "|"
-            }
-
-            else
-            {
-                finalMenu += menuSplit[i].split("|")[3] + "*"
-            }
-        }
-
-        else
-        {
-            finalMenu += menuSplit[i].split("|")[0] + "|" + menuSplit[i].split("|")[1] + "|" + menuSplit[i].split("|")[2] + "|" + menuSplit[i].split("|")[3] + "*"
-        }
-        
+        menuEditItem(itemName, menuSplit, "menuDrink")
     }
 
-    finalMenu = finalMenu.replace(/.$/,"")
-    localStorage.setItem("menu", finalMenu)
+    if (localStorage.getItem("menuDesert").length > 0)
+    {
+        menu = localStorage.getItem("menuDesert")
+        menuSplit = menu.split('*')
+        //console.log(menuArr, itemName)
+
+        menuEditItem(itemName, menuSplit, "menuDesert")
+    }
+
     editItemForm()
 }
 
@@ -932,4 +992,30 @@ function isNumberValid(imei)//luhn's algorithm
 //     378734493671000
 //     4222222222222
 //     6331101999990016
+}
+
+function removeAddCardNumb(x)
+{
+    if (x.value == "Cash")
+    {
+        let setForm = document.getElementsByClassName("cardDiv")[0];
+        setForm.innerHTML = ``;
+    }
+
+    else
+    {
+        let setForm = document.getElementsByClassName("cardDiv")[0];
+        setForm.innerHTML = `
+        <label>Card Number:</label>  <input id="cardNumber" name="cardNumber" inputmode="numeric" type="tel" autocomplete="cc-number" maxlength="22" placeholder="xxxx-xxxx-xxxx-xxxx" required="">
+        <br><br>
+        `;
+    }
+}
+
+function removeElementsByClass(className) // Thank you stack overflow for this function --- Imported from Stack Overflow --- Deletes an element based on class name
+{
+    const elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
 }

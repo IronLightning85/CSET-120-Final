@@ -182,6 +182,7 @@ function submitRecovery()
         if (recoveryInput == recoveryData)
         {
             alert("Account found! Your password is: '" + localStorage.getItem(email) + "'")
+            removeElementsByClass("popUpWindowRecovery");
         }
 
         else

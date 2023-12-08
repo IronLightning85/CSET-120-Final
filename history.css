@@ -47,17 +47,8 @@ button:hover
     font-size: 17px;
     border-radius: 25px;
     border: 2px solid black;
-    background: hsla(0, 0%, 45%, 1);
-
-    background: hsla(0, 0%, 45%, 1);
-
-    background: radial-gradient(circle, hsla(0, 0%, 45%, 1) 0%, hsla(0, 1%, 28%, 1) 100%);
-    
-    background: -moz-radial-gradient(circle, hsla(0, 0%, 45%, 1) 0%, hsla(0, 1%, 28%, 1) 100%);
-    
-    background: -webkit-radial-gradient(circle, hsla(0, 0%, 45%, 1) 0%, hsla(0, 1%, 28%, 1) 100%);
-    
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#747474", endColorstr="#494848", GradientType=1 );
+    background-image: url(images/newStone.jpg);
+    background-size: 250px 250px;
 
 }
 

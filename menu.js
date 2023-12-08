@@ -212,12 +212,8 @@ if(document.getElementsByClassName("receipt")[0])
         localStorage.setItem(key, values);
         localStorage.setItem("duplicatorPreventor", "1");
         localStorage.setItem("orderNum", "0");
-
-        //update order number
-        orderNum = localStorage.getItem("orderNum");
-        orderNum = Number(orderNum) + 1;
-        localStorage.setItem("orderNum", orderNum);
     }
+    
     else if(localStorage.getItem("duplicatorPreventor") == "0")//update purchase history with new purchase
     {
         let previousHistory = localStorage.getItem(key);

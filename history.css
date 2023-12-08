@@ -124,6 +124,13 @@ button:hover
     font-size: xx-large;
 }
 
+.wrapping
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 
 /* footer */
 .footerMain

@@ -64,6 +64,11 @@
                         <option value="Cash">Cash</option>
                         </select>
                         <br><br>
+                        <div class="cardDiv">
+                            <label>Card Number:</label>  <input id="cardNumber" name="cardNumber" inputmode="numeric" type="tel" autocomplete="cc-number" maxlength="22" placeholder="xxxx-xxxx-xxxx-xxxx" required="">
+                            <br><br>
+                        </div>
+                        
                         <label>Choose a tip percentage:</label>
                         <select id="tip" name="tip">
                         <option value="0.2">20%</option>
@@ -72,10 +77,7 @@
                         <option value="0">0%</option>
                         </select>
                         <br><br>
-                        <div class="cardDiv">
-                            <label>Card Number:</label>  <input id="cardNumber" name="cardNumber" inputmode="numeric" type="tel" autocomplete="cc-number" maxlength="22" placeholder="xxxx-xxxx-xxxx-xxxx" required="">
-                            <br><br>
-                        </div>
+                        
                         <button class="btn btn-primary btn-purchase" type="button" onclick="purchaseClicked()">PURCHASE</button>
                     </form>
                 </div>

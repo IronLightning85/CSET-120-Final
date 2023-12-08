@@ -89,8 +89,8 @@ function makePopup(divName, email) // Makes a popup window appear with a couple 
             <div class = "secondarySignUpDiv">
                 <h3>Would you like to add recovery information?</h3>
                 <br>
-                <button class="popUpButtonYes">Yes</button>
-                <button class="popUpButtonNo">No</button>
+                <button class="popUpButtonYes">Yes!</button>
+                <button class="popUpButtonNo">No!</button>
                 <br><br>
             </div>
         </div>
@@ -98,7 +98,7 @@ function makePopup(divName, email) // Makes a popup window appear with a couple 
     popUp.innerHTML = popUpContents
     newItem.append(popUp)
     popUp.getElementsByClassName("popUpButtonYes")[0].addEventListener('click', () => {addRecovery(email)})
-    popUp.getElementsByClassName("popUpButtonNo")[0].addEventListener('click', () => {removeElementsByClass("popUpWindow")})
+    popUp.getElementsByClassName("popUpButtonNo")[0].addEventListener('click', () => {removeElementsByClass("popUpWindow"), goToLogin()})
 }
 
 function addRecovery(email) // Adds further information to the popup so that the user can add the recovery information
@@ -126,7 +126,7 @@ function addRecovery(email) // Adds further information to the popup so that the
     newPopUpInfo.innerHTML = newPopUpContents
     newItem.append(newPopUpInfo)
     newPopUpInfo.getElementsByClassName("popUpButtonRecovery")[0].addEventListener('click', () => {addRecoveryInfo(email)})
-    newPopUpInfo.getElementsByClassName("popUpButtonCancel")[0].addEventListener('click', () => {removeElementsByClass("popUpWindow")})
+    newPopUpInfo.getElementsByClassName("popUpButtonCancel")[0].addEventListener('click', () => {removeElementsByClass("popUpWindow"), goToLogin()})
 }
 
 function removeElementsByClass(className) // Thank you stack overflow for this function --- Imported from Stack Overflow --- Deletes an element based on class name
@@ -135,6 +135,11 @@ function removeElementsByClass(className) // Thank you stack overflow for this f
     while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
     }
+}
+
+function goToLogin()
+{
+    window.location.href = "log_in.html";
 }
 
 function addRecoveryInfo(email) // Adds the recovery information into the local storage
@@ -148,12 +153,14 @@ function addRecoveryInfo(email) // Adds the recovery information into the local 
         alert("Your recovery data cannot be the same data as your password.")
     }
 
-    else if (x.getElementsByTagName("input")[0].value != '')
+    else if (x.getElementsByTagName("input")[0].value != null && x.getElementsByTagName("input")[0].value != "")
     {
+        console.log("Info:", x.getElementsByTagName("input")[0].value)
         localStorage.setItem(email + "|recovData", x.getElementsByTagName("input")[0].value)
         
         alert("Recovery information added to your account!")
         removeElementsByClass("popUpWindow")
+        window.location.href = "log_in.html";
     }
 }
 

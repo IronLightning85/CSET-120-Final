@@ -614,14 +614,6 @@ function addEditorItem(itemName, price, imgLink, itemInfo) //Puts the item in an
         <br><br>
         <label>Item Description: </label>  <input id="newItemDesc" name="newItemDesc" type="text" placeholder="Description...">
         <br><br>
-        <label>What menu will it go in:</label>
-        <select id="menuSelect" name="menuSelect">
-        <option value="0">Main</option>
-        <option value="1">Appetizers</option>
-        <option value="2">Drinks</option>
-        <option value="3">Deserts</option>
-        </select>
-        <br><br>
         <button class="editButton">Save Changes</button></form>
         <br><br>
     `

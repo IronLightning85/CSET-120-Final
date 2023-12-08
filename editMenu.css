@@ -16,6 +16,20 @@ button:hover
     cursor: pointer;
 }
 
+#restoreMenu:hover
+{
+    box-shadow: 0 0 30px black;
+    animation: pulsate 1s ease-out infinite;
+}
+
+@keyframes pulsate {
+    0%   { box-shadow: 0 0 0 red; }
+    25%  { box-shadow: 0 0 15px red; }
+    50%  { box-shadow: 0 0 30px red; }
+    75%  { box-shadow: 0 0 15px red; }
+    100% { box-shadow: 0 0 0 red; }
+}
+
 .mainEdit
 {
     background-repeat: no-repeat;

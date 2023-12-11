@@ -391,7 +391,7 @@ function addToCart(itemName, price, imgLink)
             </div>
             <span class="cart-price cart-column">${price}</span>
             <div class="cart-quantity cart-column">
-                <input class="cart-quantity-input" type="number" value="1" min=0>
+                <input class="cart-quantity-input" type="number" value="1" min=0 max=10>
                 <button class="btn btn-danger" type="button">REMOVE</button>
             </div>
         `;

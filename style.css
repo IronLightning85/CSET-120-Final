@@ -695,3 +695,39 @@ button
     border-radius: 8px;
     padding: 10px;
 }
+
+#stickyBar {
+    overflow: hidden;
+    background-color: rgba(135, 206, 235, 0.8);
+    margin-bottom: 25px;
+    padding: 25px;
+    text-align: center;
+    font-size: x-large;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+#stickyBar a {
+    color: #f2f2f2;
+    text-align: center;
+    margin: 55px;
+    text-decoration: none;
+}
+
+#stickyBar a {
+    color: #f2f2f2;
+    text-align: center;
+    margin: 55px;
+    text-decoration: none;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky + .content {
+    padding-top: 60px;
+}

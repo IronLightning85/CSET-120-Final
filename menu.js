@@ -289,27 +289,28 @@ function menuHyperlinks(divName, menuName) // Makes a hyperlink row and links in
         var newItem = document.getElementById(divName)
         var hyperlinkRowContents = `<div><p>`;
         
-        if (localStorage.getItem("menuMain").length > 0)
-        {
-            hyperlinkRowContents += "<a href='#hyper0'>Main Menu</a>"
-        }
+        // if (localStorage.getItem("menuMain").length > 0)
+        // {
+        //     hyperlinkRowContents += "<a href='#hyper0'>Main Menu</a>"
+        // }
 
-        if (localStorage.getItem("menuApp").length > 0)
-        {
-            hyperlinkRowContents += "<a href='#hyper1'>Appetizers</a>"
-        }
+        // if (localStorage.getItem("menuApp").length > 0)
+        // {
+        //     hyperlinkRowContents += "<a href='#hyper1'>Appetizers</a>"
+        // }
 
-        if (localStorage.getItem("menuDrink").length > 0)
-        {
-            hyperlinkRowContents += "<a href='#hyper2'>Drinks</a>"
-        }
+        // if (localStorage.getItem("menuDrink").length > 0)
+        // {
+        //     hyperlinkRowContents += "<a href='#hyper2'>Drinks</a>"
+        // }
 
-        if (localStorage.getItem("menuDesert").length > 0)
-        {
-            hyperlinkRowContents += "<a href='#hyper3'>Deserts</a>"
-        }
+        // if (localStorage.getItem("menuDesert").length > 0)
+        // {
+        //     hyperlinkRowContents += "<a href='#hyper3'>Deserts</a>"
+        // }
 
-        hyperlinkRowContents += "<a href='#hrefLink'>Cart</a></p><br><hr></div>"
+        // hyperlinkRowContents += "<a href='#hrefLink'>Cart</a></p><br><hr></div>"
+        hyperlinkRowContents += "</p><br><hr></div>"
         hyperlinkRow.innerHTML = hyperlinkRowContents;
         newItem.append(hyperlinkRow);
     }
@@ -1009,4 +1010,17 @@ function removeElementsByClass(className) // Thank you stack overflow for this f
     while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
     }
+}
+
+window.onscroll = function() {addSticky()};
+
+var navbar = document.getElementById("stickyBar");
+var sticky = navbar.offsetTop;
+
+function addSticky() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
 }

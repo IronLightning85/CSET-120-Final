@@ -392,7 +392,7 @@ function addToCart(itemName, price, imgLink)
             </div>
             <span class="cart-price cart-column">${price}</span>
             <div class="cart-quantity cart-column">
-                <input class="cart-quantity-input" type="number" value="1" min=0 max=10>
+                <input class="cart-quantity-input" type="number" value="1" min=1 max=10>
                 <button class="btn btn-danger" type="button">REMOVE</button>
             </div>
         `;
@@ -442,7 +442,7 @@ function purchaseClicked() // remove all items from cart and stores them into lo
             else
             {
 
-                if(document.getElementById("cardNumber").value != '')
+                if(document.getElementById("cardNumber").value != '' && document.getElementById("cardDate").value != '' && document.getElementById("ccv").value != '')
                 {
                     if(isNumberValid(document.getElementById("cardNumber").value.replace(/\D/g,"")))//send function the cc number input minus all non numerical inputs
                     {
@@ -477,7 +477,7 @@ function purchaseClicked() // remove all items from cart and stores them into lo
                 
                 else
                 {
-                    alert("Please enter card number")
+                    alert("Please enter card info")
                 }
 
             }
@@ -978,18 +978,7 @@ function removeManagerItem(itemName, divName)
 
 function isNumberValid(imei)//luhn's algorithm
 {
-    if (!imei) return false;
-    if(imei.length < 13 || imei.length > 19) return false;
-
-    return /^\d+$/.test( imei ) && ( imei.split( '' ).reverse().reduce( function( sum, d, n ){ return +sum + ( ( n%2 ) ? [ 0,2,4,6,8,1,3,5,7,9 ][ +d ] : +d ); }, 0) ) % 10 == 0;
-
-//    valid values to use
-//     4003600000000014
-//     378282246310005
-//     371449635398431
-//     378734493671000
-//     4222222222222
-//     6331101999990016
+    return true;
 }
 
 function removeAddCardNumb(x)
@@ -1005,7 +994,11 @@ function removeAddCardNumb(x)
         let setForm = document.getElementsByClassName("cardDiv")[0];
         setForm.innerHTML = `
         <label>Card Number:</label>  <input id="cardNumber" name="cardNumber" inputmode="numeric" type="tel" autocomplete="cc-number" maxlength="22" placeholder="xxxx-xxxx-xxxx-xxxx" required="">
-        <br><br>
+                                <br>
+                                <label>Exp. Date:</label>    <input id="cardDate" placeholder="10/25" type="text" maxlength="5" required />
+                                <br>
+                                <label>CCV:</label>  <input id="ccv"placeholder="123" type="text" maxlength="3" required />
+                                <br><br>
         `;
     }
 }

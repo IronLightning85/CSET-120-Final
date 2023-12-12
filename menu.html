@@ -65,17 +65,23 @@
                         </select>
                         <br><br>
                         <div class="cardDiv">
-                            <label>Card Number:</label>  <input id="cardNumber" name="cardNumber" inputmode="numeric" type="tel" autocomplete="cc-number" maxlength="22" placeholder="xxxx-xxxx-xxxx-xxxx" required="">
-                            <br><br>
+                                <label>Card Number:</label>  <input id="cardNumber" name="cardNumber" inputmode="numeric" type="tel" autocomplete="cc-number" maxlength="22" placeholder="xxxx-xxxx-xxxx-xxxx" required="">
+                                <br>
+                                <label>Exp. Date:</label>    <input id="cardDate" placeholder="10/25" type="text" maxlength="5" required />
+                                <br>
+                                <label>CCV:</label>  <input id="ccv" placeholder="123" type="text" maxlength="3" required />
+                                <br><br>
                         </div>
                         
-                        <label>Choose a tip percentage:</label>
-                        <select id="tip" name="tip">
-                        <option value="0.2">20%</option>
-                        <option value="0.1">10%</option>
-                        <option value="0.05">5%</option>
-                        <option value="0">0%</option>
-                        </select>
+                        <div style="display: block;">
+                            <label>Choose a tip percentage:</label>
+                            <select id="tip" name="tip">
+                            <option value="0.2">20%</option>
+                            <option value="0.1">10%</option>
+                            <option value="0.05">5%</option>
+                            <option value="0">0%</option>
+                            </select>
+                         </div>
                         <br><br>
                         
                         <button class="btn btn-primary btn-purchase" type="button" onclick="purchaseClicked()">PURCHASE</button>

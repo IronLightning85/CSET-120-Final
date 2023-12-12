@@ -238,7 +238,7 @@ function showMenu()
         menuIsEmpty()
     }
 
-    menuHyperlinks("hyper0", "menuMain")
+    menuHyperlinks("hyper0", "menuMain", "Main Menu")
 
     menu = localStorage.getItem("menuMain");
     menuArr = menu.split('*');
@@ -248,7 +248,7 @@ function showMenu()
         addItem(item[0], item[1], item[2], item[3], "shop-items-0");
     }
 
-    menuHyperlinks("hyper1", "menuApp")
+    menuHyperlinks("hyper1", "menuApp", "Appetizers")
 
     menu = localStorage.getItem("menuApp");
     menuArr = menu.split('*');
@@ -258,7 +258,7 @@ function showMenu()
         addItem(item[0], item[1], item[2], item[3], "shop-items-1");
     }
 
-    menuHyperlinks("hyper2", "menuDrink")
+    menuHyperlinks("hyper2", "menuDrink", "Drinks")
 
     menu = localStorage.getItem("menuDrink");
     menuArr = menu.split('*');
@@ -268,7 +268,7 @@ function showMenu()
         addItem(item[0], item[1], item[2], item[3], "shop-items-2");
     }
 
-    menuHyperlinks("hyper3", "menuDesert")
+    menuHyperlinks("hyper3", "menuDesert", "Deserts")
 
     menu = localStorage.getItem("menuDesert");
     menuArr = menu.split('*');
@@ -279,7 +279,7 @@ function showMenu()
     }
 }
 
-function menuHyperlinks(divName, menuName) // Makes a hyperlink row and links in the specified divName
+function menuHyperlinks(divName, menuName, titleName) // Makes a hyperlink row and links in the specified divName
 {
     
     if (localStorage.getItem(menuName).length > 0)
@@ -310,7 +310,7 @@ function menuHyperlinks(divName, menuName) // Makes a hyperlink row and links in
         // }
 
         // hyperlinkRowContents += "<a href='#hrefLink'>Cart</a></p><br><hr></div>"
-        hyperlinkRowContents += "</p><br><hr></div>"
+        hyperlinkRowContents += titleName + "</p><br><hr></div>"
         hyperlinkRow.innerHTML = hyperlinkRowContents;
         newItem.append(hyperlinkRow);
     }

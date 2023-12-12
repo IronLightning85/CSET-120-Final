@@ -369,3 +369,9 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0E24CD", en
     box-shadow: 5px 5px 10px black;
     background-image: url(images/stardew\ wood\ texture\ final.jpg);
 }
+
+.cardDiv
+{
+    display: inline-block;
+    text-align: right;
+}

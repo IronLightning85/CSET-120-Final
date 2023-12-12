@@ -404,6 +404,7 @@ function addToCart(itemName, price, imgLink)
         cartRow.getElementsByClassName("btn-danger")[0].addEventListener('click', () => {removeItem(itemName)});
     }
 
+    alert("Item added to cart.")
     updatePrice();
 }
 
